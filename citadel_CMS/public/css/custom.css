@@ -1,0 +1,309 @@
+.custom-dropdown-menu {
+    margin-left: -125px;
+    background-color: #ffffff; /* Background color */
+    border: 1px solid #e0e0e0; /* Border color */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 4px; /* Rounded corners */
+    z-index: 1000; /* Ensure it appears above other elements */
+    font-size: 12px;
+    max-height: 200px; /* Set a max height */
+    overflow-y: auto; /* Enable scrolling */
+}
+
+.custom-dropdown-item {
+    display: flex; /* Align icon and text */
+    align-items: center; /* Center vertically */
+    padding: 10px 15px; /* Padding for better touch target */
+    color: #333; /* Text color */
+    text-decoration: none; /* Remove underline */
+    cursor: pointer; /* Indicate interactivity */
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out; /* Transition for hover effects */
+}
+
+.custom-dropdown-item:hover {
+    background-color: #f5f5f5; /* Background color on hover */
+    color: #007bff; /* Change text color on hover */
+}
+
+.custom-dropdown-item:focus {
+    outline: 2px solid #007bff; /* Highlight on focus */
+    outline-offset: 2px; /* Space between outline and item */
+}
+
+.custom-dropdown-item i {
+    margin-right: 8px; /* Space between icon and text */
+}
+
+.custom-dropdown-menu::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.custom-dropdown-menu::-webkit-scrollbar-thumb {
+    background: #ccc; /* Color of the scrollbar thumb */
+    border-radius: 4px; /* Rounded corners */
+}
+
+.custom-dropdown-menu::-webkit-scrollbar-thumb:hover {
+    background: #aaa; /* Hover state of the scrollbar thumb */
+}
+
+
+
+
+.file-name-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    max-width: 100%; /* Ensures container fits the width of the parent */
+}
+
+.file-name {
+    max-width: 70%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    margin-right: 15px;
+}
+
+.download-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.download-link:hover {
+    text-decoration: underline;
+}
+
+
+.app-container .content-container .side-menu:hover {
+    width: 350px;
+}
+
+
+/* General Sidebar Styling */
+.voyager .side-menu {
+    background: #0a0f1e;
+    box-shadow: 0px 4px 15px rgba(0, 255, 255, 0.2);
+    border-radius: 0; /* Remove rounded corners */
+}
+
+/* Navbar Header */
+.voyager .side-menu .navbar-header {
+    background: transparent;
+    border-radius: 0px;
+    box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.5);
+}
+
+.voyager .side-menu .navbar-header .navbar-brand {
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0px 0px 15px rgba(0, 255, 255, 0.7);
+}
+
+/* Navigation Menu */
+.voyager .side-menu .navbar {
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 0;
+    box-shadow: none;
+    -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+    padding: 10px 0;
+}
+
+.voyager .side-menu .navbar-nav {
+    width: 100%;
+}
+
+.voyager .side-menu .navbar li {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Navigation Items */
+.voyager .side-menu .navbar li > a {
+    color: #5CAFE0;
+    font-weight: 500;
+    padding: 12px 20px;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    border-left: 3px solid transparent;
+    gap: 10px;
+}
+
+/* Active & Hover Effects */
+.voyager .side-menu .navbar li.active > a {
+    border-right: 4px solid #5CAFE0;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    box-shadow: 0px 0px 8px rgba(0, 229, 255, 0.8);
+}
+
+.voyager .side-menu .navbar > li:hover > a {
+    color: #5CAFE0;
+    box-shadow: 0px 0px 15px rgba(255, 2, 102, 0.8);
+}
+
+/* Dropdown Styling */
+.voyager .side-menu .navbar li.dropdown {
+    background: transparent;
+}
+
+.voyager .side-menu .navbar li.dropdown > .panel-collapse {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+}
+
+.voyager .side-menu .navbar li.dropdown .panel-body {
+    padding: 0 15px;
+}
+
+/* Dark Mode Sidebar */
+.voyager .side-menu.sidebar-inverse {
+    background: #090c1b;
+    box-shadow: 0px 0px 20px rgba(0, 255, 255, 0.3);
+    border-radius: 0px;
+}
+
+.voyager .side-menu.sidebar-inverse .navbar {
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 0;
+    box-shadow: none;
+    overflow-y: auto;  /* Allows vertical scrolling */
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    white-space: nowrap;
+    -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+}
+
+/* Dark Mode Items */
+.voyager .side-menu.sidebar-inverse .navbar li > a {
+    /* color: #5CAFE0; */
+    color:#377195;
+    transition: all 0.3s ease-in-out;
+}
+
+.voyager .side-menu.sidebar-inverse .navbar li.active > a {
+    /* color: #00e5ff; */
+    color: #5CAFE0;
+    border-left: 3px solid #5CAFE0;
+    background: transparent;
+    font-weight: 500;
+    box-shadow: 0px 0px 8px rgba(0, 229, 255, 0.8);
+}
+
+.voyager .side-menu.sidebar-inverse .navbar > li:hover > a {
+    color: #fff;
+    color: #5CAFE0;
+    box-shadow: 0px 0px 15px rgba(255, 2, 102, 0.8);
+}
+
+/* Responsive Sidebar */
+@media (max-width: 768px) {
+    .voyager .side-menu {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-radius: 0;
+    }
+
+    .voyager .side-menu .navbar li > a {
+        padding: 10px 15px;
+    }
+}
+
+
+.voyager .side-menu li {
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.voyager .side-menu li:hover {
+    background-color: #1a2335; /* Slightly lighter background on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+    box-shadow: 0px 4px 15px rgba(0, 255, 255, 0.3); /* Enhanced shadow on hover */
+}
+
+.voyager .side-menu li.active {
+    color: #ffffff; /* White text color for active item */
+    border-left: 5px solid #00bcd4; /* Highlighting active item with a left border */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.voyager .side-menu li.active:hover {
+    box-shadow: 0px 4px 15px rgba(0, 255, 255, 0.4); /* Enhanced shadow on hover for active */
+}
+
+.voyager .side-menu.sidebar-inverse .navbar li>a:hover {
+    background: linear-gradient(135deg, rgba(92, 175, 224, 0.3), rgba(70, 113, 145, 0.5));
+    background-color: #1a2335;
+    color: #5CAFE0;
+}
+
+
+
+/* Navbar background fix */
+.navbar.navbar-default.navbar-fixed-top {
+    background: #0e132b;
+    border-bottom: none;
+    padding-top: 10px;
+}
+
+/* Breadcrumb container fix */
+.breadcrumb {
+    background: transparent;
+    padding: 5px 15px;
+    border-radius: 8px;
+    display: inline-block;
+    border: 1px solid #c2ecff;
+    box-shadow: inset 0px 0px 8px #c2ecff26;
+}
+
+/* Active breadcrumb item */
+.breadcrumb > li.active a {
+    color: #c2ecff;
+    font-weight: bold;
+    text-shadow: 0px 0px 5px rgba(0, 199, 190, 0.7);
+}
+
+.breadcrumb li:last-child
+{
+    color:#c2ecff;
+}
+
+
+.hamburger-inner, .hamburger-inner:after, .hamburger-inner:before {
+    background: #5CAFE0;
+}
+
+.voyager .navbar.navbar-default>.container-fluid:after, .voyager .navbar>.container-fluid {
+    border-bottom:0px;
+}
+
+
+/* Remove Sidebar Background behind profile picture */
+.panel.widget.center.bgimage {
+    background-image: none !important;
+    background: transparent;
+}
+
+
+
+.app-container {
+    background: #EDF2F6;
+}
+
+.voyager .table.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #fdfdfd;
+}
+
+.voyager .table.table-striped>tbody>tr:nth-of-type(even) {
+    background-color: #def3ff;
+}
