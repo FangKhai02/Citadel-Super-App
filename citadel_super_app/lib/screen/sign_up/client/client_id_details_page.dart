@@ -25,6 +25,7 @@ import 'package:citadel_super_app/project_widget/dropdown/app_dropdown.dart';
 import 'package:citadel_super_app/project_widget/form/app_date_picker_form_field.dart';
 import 'package:citadel_super_app/project_widget/form/app_form.dart';
 import 'package:citadel_super_app/project_widget/form/app_text_form_field.dart';
+import 'package:citadel_super_app/project_widget/progress/signup_progress_bar.dart';
 import 'package:citadel_super_app/service/document_capture_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -110,6 +111,10 @@ class ClientIdDetailsPageState extends ConsumerState<ClientIdDetailsPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Progress Bar
+                  const SignUpProgressBar(currentStep: 4),
+                  gapHeight4,
+
                   // Header Section with Icon
                   Container(
                     width: double.infinity,
@@ -338,6 +343,14 @@ class ClientIdDetailsPageState extends ConsumerState<ClientIdDetailsPage> {
                     onTap: () async {
                       FocusScope.of(context).unfocus();
 
+                      // Validate age restriction (must be at least 18)
+                      if (dobController.text.isNotEmpty) {
+                        if (!_isUserAtLeast18(dobController.text)) {
+                          _showAgeRestrictionDialog(context);
+                          return;
+                        }
+                      }
+
                       // Validate images are uploaded
                       final isPassport = documentTypeController.text == 'PASSPORT';
                       if (!isPassport && (_frontImageBase64 == null || _backImageBase64 == null)) {
@@ -372,6 +385,54 @@ class ClientIdDetailsPageState extends ConsumerState<ClientIdDetailsPage> {
             ),
           ),
         ));
+  }
+
+  /// Check if user is at least 18 years old
+  /// Expected date format: MM-dd-yyyy (from AppDatePickerFormField)
+  bool _isUserAtLeast18(String dobString) {
+    if (dobString.isEmpty) return false;
+
+    try {
+      // Date format is MM-dd-yyyy (e.g., "01-15-1990")
+      final parts = dobString.split('-');
+      if (parts.length != 3) return false;
+
+      final month = int.parse(parts[0]);
+      final day = int.parse(parts[1]);
+      final year = int.parse(parts[2]);
+
+      final dob = DateTime(year, month, day);
+      final today = DateTime.now();
+
+      // Calculate age, accounting for whether birthday has passed this year
+      int age = today.year - dob.year;
+      if (today.month < dob.month ||
+          (today.month == dob.month && today.day < dob.day)) {
+        age--;
+      }
+
+      return age >= 18;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /// Show age restriction dialog
+  void _showAgeRestrictionDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (ctx) {
+        return AppDialog(
+          title: 'Age Restriction',
+          message: 'You must be at least 18 years old to use this application.',
+          isRounded: true,
+          positiveOnTap: () {
+            Navigator.pop(context);
+          },
+          showNegativeButton: false,
+        );
+      },
+    );
   }
 
   Future<void> validateClientId(
