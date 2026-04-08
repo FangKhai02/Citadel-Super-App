@@ -112,7 +112,7 @@ class ClientIdDetailsPageState extends ConsumerState<ClientIdDetailsPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Progress Bar
-                  const SignUpProgressBar(currentStep: 4),
+                  const SignUpProgressBar(currentStep: 3),
                   gapHeight4,
 
                   // Header Section with Icon
