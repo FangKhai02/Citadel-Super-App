@@ -185,7 +185,7 @@ class DocumentPage extends HookConsumerWidget {
                       icon: Assets.images.icons.issuedId.path,
                       title: 'Prepare Document',
                       description:
-                          'Government-issued ID (MyKad, Passport, Army ID or MyPR)',
+                          'Government-issued ID (MyKad, Passport, Army ID, iKad or MyPR)',
                       color: AppColor.brightBlue,
                       controller: stepsAnimation,
                       delay: 0,
