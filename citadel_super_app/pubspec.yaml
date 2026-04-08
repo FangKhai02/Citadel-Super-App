@@ -1,0 +1,126 @@
+name: citadel_super_app
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.1.1+83
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+  flutter: ^3.22.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # dynamic screen size 
+  flutter_screenutil: ^5.9.3
+
+  # state management
+  hooks_riverpod: ^2.5.2
+  flutter_hooks: ^0.20.5
+
+  # widget
+  group_list_view: ^1.1.1
+  dotted_border: ^2.1.0
+  pin_code_fields: ^8.0.1
+  webview_flutter: ^4.8.0
+  flutter_html: ^3.0.0-beta.2
+  expandable_page_view: ^1.0.17
+
+  # formating and iterable
+  collection: ^1.18.0
+  intl: ^0.19.0
+  recase: ^4.1.0
+
+  # signing
+  signature: ^5.5.0
+  
+  # network
+  dio: ^5.7.0
+  pretty_dio_logger: ^1.4.0
+
+  # local storage
+  flutter_secure_storage: ^9.2.2
+  shared_preferences: ^2.3.2
+
+  # device application info
+  package_info_plus: ^8.2.1
+  device_info_plus: ^10.1.2
+
+  # image/file upload
+  image_picker: ^1.2.0
+  file_picker: ^8.1.3
+  image: ^4.3.0
+  image_cropper: ^8.0.2
+
+  # file generation
+  json_annotation: ^4.9.0
+  freezed: ^2.5.2 
+  freezed_annotation: ^2.4.4
+
+  # pdf view and donwload
+  pdfx: ^2.8.0
+  url_launcher: ^6.3.1
+  flutter_pdfview: ^1.4.3
+  path_provider: ^2.1.5
+  open_filex: ^4.7.0
+  permission_handler: ^11.3.0
+
+  # firebase
+  firebase_core: ^3.12.1
+  firebase_crashlytics: ^4.3.4
+
+  # camera for document/selfie capture
+  camera: ^0.11.0
+  flutter_easyloading: ^3.0.5
+  app_links: ^6.3.2
+  onesignal_flutter: 5.5.0
+
+  # delete inbox
+  flutter_slidable: ^3.1.2
+  http: ^1.0.0
+
+  # share
+  share_plus: ^11.0.0
+
+  # html
+  universal_html: ^2.2.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  build_runner: ^2.4.11
+  flutter_gen_runner: ^5.3.1
+  json_serializable: ^6.1.4
+
+flutter_gen:
+  output: lib/generated/ # Optional (default: lib/gen/)
+
+  assets:
+    style: dot-delimiter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/images/backgrounds/
+    - assets/images/icons/
+    - assets/images/temporary/
+    # - assets/fonts/
+    - assets/json/
+    # - assets/langs/
+
+  fonts:
+    - family: ITCAvantGardeStd
+      fonts:
+        - asset: assets/fonts/ITCAvantGardeStd-Bold.otf
+          weight: 700
+        - asset: assets/fonts/ITCAvantGardeStd-Demi.otf
+          weight: 600
+        - asset: assets/fonts/ITCAvantGardeStd-Medium.otf
+          weight: 500
+        - asset: assets/fonts/ITCAvantGardeStd-Book.otf
+          weight: 400 
+        - asset: assets/fonts/ITCAvantGardeStd-ExtraLight.otf
+          weight: 300
+

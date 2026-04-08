@@ -1,0 +1,11 @@
+bricks:
+  swaggerAPI2dart:
+    git:
+      url: "https://gitlab.com/nexstream-hybrid/flutter_base_helper"
+      path: mason_bricks/swaggerAPI2dart
+      ref: revamp
+  json2dart:
+    git:
+      url: "https://gitlab.com/nexstream-hybrid/flutter_base_helper"
+      path: mason_bricks/json2dart
+      ref: revamp

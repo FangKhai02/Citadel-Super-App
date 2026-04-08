@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Redemption Agreement</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 20mm 30mm 20mm;
+            @top-right {
+                content: element(header);
+            }
+
+            @bottom-center {
+                content: element(footer);
+            }
+        }
+
+        .header {
+            position: running(header);
+            text-align: right;
+        }
+
+        .footer {
+            position: running(footer);
+            text-align: center;
+            font-size: 12px;
+            color: #333;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ul {
+            list-style-type: disc; /* Force solid black dots */
+        }
+    </style>
+</head>
+
+<body>
+<div class="header">
+    <p><img style="filter: brightness(0.6) opacity(0.6);"
+            src="https://sgp1.digitaloceanspaces.com/nexstream-dev/citadel/settings/January2025/RA0PvS9iQhBX9UkVSSLg.jpg"
+            height="53" width="220" alt="Citadel Logo"/></p>
+</div>
+<div class="footer" style="margin-right: 60px; margin-left: 60px;">
+    <table style="width: 100%; text-align: center; border-spacing: 0; border-collapse: collapse;">
+        <tr>
+            <td colspan="3"><p style="opacity: 0.6;">Citadel Group Sdn. Bhd, 43 – 7, Block C, Jaya One, 72A Jln
+                Professor Diraja Ungku Aziz, Seksyen 13, 46200 Petaling Jaya, Selangor Darul Ehsan.</p></td>
+        </tr>
+        <tr>
+            <td style="text-align: right; padding-left: 40px;">
+                <a style="text-decoration: none">
+                    <img style="width: 20px; height: 20px; margin-right: 5px; filter: brightness(0.6) opacity(0.6);"
+                         src="https://sgp1.digitaloceanspaces.com/nexstream-dev/citadel/settings/January2025/wfYXK38zEjtX3HfG5aNO.png"/>
+                </a>
+                <a style="text-decoration: none">
+                    <img style="width: 20px; height: 20px; margin-right: 5px; filter: brightness(0.6) opacity(0.6);"
+                         src="https://sgp1.digitaloceanspaces.com/nexstream-dev/citadel/settings/January2025/Rnif43zuqWNHAi9NJVYG.png"/>
+                </a>
+                <a style="text-decoration: none">
+                    <img style="width: 20px; height: 20px; filter: brightness(0.6) opacity(0.6);"
+                         src="https://sgp1.digitaloceanspaces.com/nexstream-dev/citadel/settings/January2025/7U5H7waUflUKHGyQG3Mw.png"/>
+                </a>
+            </td>
+            <td><p style="opacity: 0.6;">citadelgroupofficial</p></td>
+            <td style="text-align: left; padding-right: 40px;"><p style="opacity: 0.6;">www.citadelgroup.online</p></td>
+        </tr>
+    </table>
+</div>
+
+<h1>Declaration of Redemption</h1>
+<ol>
+    <li>I hereby request Citadel Trustee Berhad (CTB) to carry out the above instruction(s).</li>
+    <li>I have read and fully understand all the Terms and Conditions in this Form, the Disclosure Document and the Supplementary Disclosure Document(s), if any, for the Trust Product(s) to be redeemed and agree to be bound by it.</li>
+    <li>I hereby confirm that all information and supporting documents provided herein are true, correct and complete and that I have not withheld any material facts or information which may influence the acceptance of this redemption.</li>
+    <li>I acknowledge and accept that CTB reserves the right to reject without notice this form without assigning any reasons thereto and under no circumstances shall CTB be liable for any loss or damage for such action.</li>
+    <li>For Savings/GIRO (Qard) Account Opening: I am aware of the 25% penalty charges that will be incurred directly or indirectly upon CTB acting on my instruction(s).</li>
+    <li>I understand that all applicable bank charges are to be borne by the Settlor. I/We hereby deposit the amount(s) into my/our Savings/GIRO Account based on Shariah contract of Qard and I/we hereby give my/our consent to the Bank to utilize the whole or any part of any monies standing to the credit of my/our account in the manner that the Bank deems fit and the Bank will guarantee payment of the whole or such of any monies thereof standing to my/our account upon demand.</li>
+    <li>Save and except in the event of gross negligence, I agree to indemnify CTB, and any of their agents against any actions, proceedings, claims, losses, damages, costs and expenses which may be brought against, suffered or incurred by any or all of them either directly or indirectly out of or in connection with carrying out this request.</li>
+</ol>
+
+<div style="page-break-after: always;"></div>
+<h2>Signature</h2>
+<table border="1" style="width:100%; border-collapse: collapse;">
+    <tr>
+        <th style="text-align: left; padding: 10px;">Purchaser Signature</th>
+        <th style="text-align: left; padding: 10px;">Witness Signature</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top; padding: 10px;">
+            <#if clientSignatureImage?has_content>
+            <p><img src="${clientSignatureImage}" alt="Client Signature" width="200" height="100"/></p>
+        </#if>
+        <p>_________________________</p>
+        <p>Name: ${clientName}</p>
+        <p>Date: ${clientSignedDate}</p>
+        </td>
+        <td style="vertical-align: top; padding: 10px;">
+            <#if agentSignatureImage?has_content>
+            <p><img src="${agentSignatureImage}" alt="Agent Signature" width="200" height="100"/></p>
+        </#if>
+        <p>_________________________</p>
+        <p>Name: ${agentName}</p>
+        <p>Date: <#if agentSignedDate?has_content>${agentSignedDate}</#if></p>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Fixed Expected Profit Payment Schedule</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 20mm 30mm 20mm;
+            @top-right {
+                content: element(header);
+            }
+
+            @bottom-center {
+                content: element(footer);
+            }
+        }
+
+        th {
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+        }
+        body {
+            font-family: "Arial", sans-serif;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<p style="text-align: center"><strong><u>Expected Profit Payment Schedule</u></strong></p>
+<table style="width:100%; border-collapse: collapse;">
+    <colgroup>
+        <col style="width: 50%;"/>
+        <col style="width: 50%;"/>
+    </colgroup>
+    <tbody>
+    <tr>
+        <td style="text-align: left; padding: 5px;">Name</td>
+        <td style="text-align: left; padding: 5px;">: ${clientName}</td>
+    </tr>
+    <tr>
+        <td style="text-align: left; padding: 5px;">Co. Reg. / NRIC No. / Passport No.</td>
+        <td style="text-align: left; padding: 5px;">: ${clientIdentityId}</td>
+    </tr>
+    <tr>
+        <td style="text-align: left; padding: 5px;">Subscription Amount</td>
+        <td style="text-align: left; padding: 5px;">: RM ${trustFundAmount}</td>
+    </tr>
+    <tr>
+        <td style="text-align: left; padding: 5px;">Total Expected Profit (Net)</td>
+        <td style="text-align: left; padding: 5px;">: RM ${totalExpectedProfitSharing}</td>
+    </tr>
+    <tr>
+        <td style="text-align: left; padding: 5px;">Date of Placement</td>
+        <td style="text-align: left; padding: 5px;">: ${agreementDate}</td>
+    </tr>
+    <tr>
+        <td style="text-align: left; padding: 5px;">Date of Capital Repayment</td>
+        <td style="text-align: left; padding: 5px;">: ${capitalRepaymentDate}</td>
+    </tr>
+    </tbody>
+</table>
+<p></p>
+<table border="1" style="width:100%; border-collapse: collapse; margin-top: 10px">
+    <thead>
+    <tr>
+        <th>Tenure</th>
+        <th>Entitlement Date</th>
+        <th>Schedule</th>
+        <th>Payment Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <#list rows as row>
+    <tr>
+        <#-- In the first row, display the Tenure cell with rowspan -->
+        <#if row?index == 0>
+            <td rowspan="${rows?size}" style="text-align: center; vertical-align: center">
+                ${totalTenure} Years
+            </td>
+        </#if>
+        <td>${row.entitlementDate}</td>
+        <td>${row.schedule}</td>
+        <td>${row.paymentDate}</td>
+    </tr>
+    </#list>
+    </tbody>
+</table>
+<p>${footerNote}</p>
+</body>
+</html>

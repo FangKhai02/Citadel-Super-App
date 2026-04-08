@@ -1,0 +1,31 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+before_all do |lane|
+  if lane == :beta
+    import_from_git(
+      url: 'https://gitlab.com/nexstream-hybrid/flutter_base_helper.git',
+      path: 'fastlane/Fastfile',
+      # version: "0.0.3-47"
+    )
+    load_variables
+  end
+end
+
+lane :beta do |options|
+  version_increment(version: options[:version])
+  release(platform: options[:platform], type: options[:type])
+  prepare_commit(prefix: options[:prefix])
+end

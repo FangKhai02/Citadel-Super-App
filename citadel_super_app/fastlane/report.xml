@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="00: import_from_git" time="2.086728">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="01: Switch to load_variables lane" time="0.000996">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="02: Switch to version_increment lane" time="0.000296">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="03: prompt" time="2.708522">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="04: perl -i -pe s/\^\(version:\\s+\)\(\\d+\)\(\\.\)\(\\d+\)\(\\.\)\(\\d+\)\(\\+\)\(\\d+\)\$/\$1.\(\$2\).\$3.\(\$4\).\$5.\(\$6+1\).\$7.\(\$8+1\)/e ../pubspec.yaml" time="0.073205">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="05: Switch to release lane" time="0.000885">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="06: Switch to pre_release lane" time="0.000629">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="07: flutter_version" time="0.014301">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="08: prompt" time="1.113028">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="09: prompt" time="1.36093">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="10: pwd" time="0.021286">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="11: Switch to release_android lane" time="0.001022">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="12: Switch to build_android_apk lane" time="0.000357">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="13: assembleRelease" time="171.414583">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="14: Switch to rename_android_file lane" time="0.001137">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="15: cd .. &amp;&amp; pwd" time="0.038393">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="16: mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/citadel_super_app_0.2.2_28.apk" time="0.006765">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="17: Switch to upload_android lane" time="0.000286">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="18: if 
+  gdrive help upload &gt;/dev/null 2&gt;&amp;1
+then
+  gdrive upload -p 1MOVmWXkJk4qBHQjCvHmZNjVGW9TRvlWj --name citadel_super_app_0.2.2_28.apk build/app/outputs/flutter-apk/citadel_super_app_0.2.2_28.apk | tail -n1
+else
+  gdrive files upload --parent 1MOVmWXkJk4qBHQjCvHmZNjVGW9TRvlWj build/app/outputs/flutter-apk/citadel_super_app_0.2.2_28.apk | tail -n1
+fi
+" time="11.870325">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="19: clipboard" time="0.05812">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="20: Switch to build_android_aab lane" time="0.000246">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="21: bundleRelease" time="42.56739">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="22: Switch to rename_android_file lane" time="0.001232">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="23: cd .. &amp;&amp; pwd" time="0.015102">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="24: mv build/app/outputs/bundle/release/app-release.aab build/app/outputs/bundle/release/citadel_super_app_0.2.2_28.aab" time="0.006628">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="25: Switch to upload_android lane" time="0.000245">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="26: if 
+  gdrive help upload &gt;/dev/null 2&gt;&amp;1
+then
+  gdrive upload -p 1MOVmWXkJk4qBHQjCvHmZNjVGW9TRvlWj --name citadel_super_app_0.2.2_28.aab build/app/outputs/bundle/release/citadel_super_app_0.2.2_28.aab | tail -n1
+else
+  gdrive files upload --parent 1MOVmWXkJk4qBHQjCvHmZNjVGW9TRvlWj build/app/outputs/bundle/release/citadel_super_app_0.2.2_28.aab | tail -n1
+fi
+" time="8.623863">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="27: clipboard" time="0.052274">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="28: clean" time="8.46232">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="29: Switch to prepare_commit lane" time="0.003146">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="30: git log --pretty=&quot;* %s&quot; --no-merges &quot;$(git describe --tags --abbrev=0)..HEAD&quot; &gt; CHANGELOG_TODAY.md" time="0.141929">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="31: sort -k1 &lt; CHANGELOG_TODAY.md" time="0.01798">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="32: if [ ! -f ../CHANGELOG.md ]
+then
+  touch ../CHANGELOG.md
+fi
+" time="0.011148">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="33:     ex ../CHANGELOG.md &lt;&lt;eof
+    1 insert
+# 0.2.2-28
+https://drive.google.com/file/d/ViewUrl: https://drive.google.com/file/d/1qssx8K3N8BXUeRKxxgddD5kIYn1eJujG/view?usp=drivesdk
+/view?usp=sharing
+
+.
+    xit
+    eof
+" time="0.222449">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="34: rm -r CHANGELOG_TODAY.md" time="0.018326">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="35: git add ../CHANGELOG.md" time="0.018155">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="36: git commit -m &quot;[Release] Update version to 0.2.2/28&quot; ../pubspec.yaml ../CHANGELOG.md ../ios/Runner.xcodeproj/project.pbxproj" time="0.073507">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="37: add_git_tag" time="0.01757">
+        
+          <failure message="/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/fastlane/lib/fastlane/actions/actions_helper.rb:67:in &apos;Fastlane::Actions.execute_action&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/fastlane/lib/fastlane/runner.rb:255:in &apos;block in Fastlane::Runner#execute_action&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/fastlane/lib/fastlane/runner.rb:229:in &apos;Dir.chdir&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/fastlane/lib/fastlane/runner.rb:229:in &apos;Fastlane::Runner#execute_action&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/fastlane/lib/fastlane/runner.rb:157:in &apos;Fastlane::Runner#trigger_action_by_name&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/fastlane/lib/fastlane/fast_file.rb:159:in &apos;Fastlane::FastFile#method_missing&apos;&#10;../../../../../var/folders/1j/zbjn5vz12kz30w_pbhj51d300000gn/T/fl_clone20250305-86791-pk0ws/flutter_base_helper.git/fastlane/Fastfile:343:in &apos;block in Fastlane::FastFile#parsing_binding&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/fastlane/lib/fastlane/lane.rb:41:in &apos;Fastlane::Lane#call&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/fastlane/lib/fastlane/runner.rb:204:in &apos;Fastlane::Runner#try_switch_to_lane&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/fastlane/lib/fastlane/runner.rb:146:in &apos;Fastlane::Runner#trigger_action_by_name&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/fastlane/lib/fastlane/fast_file.rb:159:in &apos;Fastlane::FastFile#method_missing&apos;&#10;Fastfile:30:in &apos;block in Fastlane::FastFile#parsing_binding&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/fastlane/lib/fastlane/lane.rb:41:in &apos;Fastlane::Lane#call&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/fastlane/lib/fastlane/runner.rb:49:in &apos;block in Fastlane::Runner#execute&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/fastlane/lib/fastlane/runner.rb:45:in &apos;Dir.chdir&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/fastlane/lib/fastlane/runner.rb:45:in &apos;Fastlane::Runner#execute&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/fastlane/lib/fastlane/lane_manager.rb:46:in &apos;Fastlane::LaneManager.cruise_lane&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/fastlane/lib/fastlane/command_line_handler.rb:34:in &apos;Fastlane::CommandLineHandler.handle&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/fastlane/lib/fastlane/commands_generator.rb:110:in &apos;block (2 levels) in Fastlane::CommandsGenerator#run&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/commander-4.6.0/lib/commander/command.rb:187:in &apos;Commander::Command#call&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/commander-4.6.0/lib/commander/command.rb:157:in &apos;Commander::Command#run&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/commander-4.6.0/lib/commander/runner.rb:444:in &apos;Commander::Runner#run_active_command&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:124:in &apos;Commander::Runner#run!&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/commander-4.6.0/lib/commander/delegates.rb:18:in &apos;Commander::Delegates#run!&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/fastlane/lib/fastlane/commands_generator.rb:363:in &apos;Fastlane::CommandsGenerator#run&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/fastlane/lib/fastlane/commands_generator.rb:43:in &apos;Fastlane::CommandsGenerator.start&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/fastlane/lib/fastlane/cli_tools_distributor.rb:123:in &apos;Fastlane::CLIToolsDistributor.take_off&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/gems/fastlane-2.226.0/bin/fastlane:23:in &apos;&lt;top (required)&gt;&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/bin/fastlane:25:in &apos;Kernel#load&apos;&#10;/opt/homebrew/Cellar/fastlane/2.226.0_1/libexec/bin/fastlane:25:in &apos;&lt;main&gt;&apos;&#10;&#10;Exit status of command &apos;git tag -am 0.2.2/28\ \(fastlane\) 0.2.2/28&apos; was 128 instead of 0.&#10;致命錯誤: 標籤 &apos;0.2.2/28&apos; 已存在&#10;" />
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>

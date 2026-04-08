@@ -1,0 +1,13 @@
+source "https://rubygems.org"
+
+gem "fastlane"
+
+# Flutter
+source "https://rubygems.pkg.github.com/tianhaoz95" do
+  gem "fastlane-plugin-flutter_version", "1.0.0"
+end
+
+# iOS native
+source "https://rubygems.pkg.github.com/SiarheiFedartsou" do
+  gem "fastlane-plugin-versioning", "0.5.0"
+end

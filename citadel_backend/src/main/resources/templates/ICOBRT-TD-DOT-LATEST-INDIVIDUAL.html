@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ICOBRT-TD-DOT-LATEST-INDIVIDUAL</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 20mm 30mm 20mm;
+        }
+
+        .header1 {
+            text-align: right;
+        }
+
+        .header2 {
+            text-align: right;
+        }
+
+        @page section1:first {
+            @top-right {
+                content: element(header1);
+            }
+            @bottom-left {
+                content: "${agreementFileName}";
+            }
+            @bottom-right {
+                content: counter(page);
+            }
+        }
+
+        @page section1 {
+            @bottom-left {
+                content: "${agreementFileName}";
+            }
+            @bottom-right {
+                content: counter(page);
+            }
+        }
+
+        @page section2:first {
+            counter-reset: page 1;
+            @top-right {
+                content: element(header2);
+            }
+            @bottom-left {
+                content: "${agreementFileName}";
+            }
+            @bottom-right {
+                content: counter(page);
+            }
+        }
+
+        @page section2 {
+            @bottom-left {
+                content: "${agreementFileName}";
+            }
+            @bottom-right {
+                content: counter(page);
+            }
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        td {
+            text-align: justify;
+        }
+
+        ul {
+            list-style-type: disc;
+        }
+
+        ol {
+            counter-reset: section;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ol > li {
+            counter-increment: section;
+            position: relative;
+            padding-left: 2em;
+            text-align: justify;
+        }
+
+        ol > li::before {
+            content: counter(section) ".";
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            width: 2em;
+            text-align: left;
+        }
+
+        ol ol {
+            counter-reset: subsection;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ol ol > li {
+            counter-increment: subsection;
+            position: relative;
+            padding-left: 2em;
+        }
+
+        ol ol > li::before {
+            content: counter(section) "." counter(subsection);
+            position: absolute;
+            left: 0;
+            width: 3em;
+            text-align: left;
+        }
+        .center-text {
+            text-align: center;
+        }
+
+        .td-blue {
+            background-color: #385c94;
+            color: white;
+            font-weight: bold;
+        }
+        p {
+            margin-top: 0;
+            text-align: justify;
+        }
+        tr {
+            page-break-inside: avoid;
+        }
+        .alpha-list {
+            counter-reset: alpha-section;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .alpha-list > li {
+            counter-increment: alpha-section;
+            position: relative;
+            padding-left: 2em;
+        }
+
+        .alpha-list > li::before {
+            content: counter(alpha-section, upper-alpha) "."; /* A, B, C */
+            position: absolute;
+            left: 0;
+            width: 2em;
+            text-align: left;
+        }
+
+        .schedule td {
+            text-align: left;
+        }
+
+    </style>
+</head>
+<body>
+<div style="page: section1;">
+    <div class="header1" style="margin-bottom: 20px">
+        <img style="filter: brightness(0.6) opacity(0.6);"
+             src="https://sgp1.digitaloceanspaces.com/nexstream-dev/citadel/settings/February2025/Tl5y2JFEqWuqvoqqUNjV.png"
+             height="53" width="220" alt="Citadel Logo"/>
+    </div>
+    <h3 class="center-text"><strong>DECLARATION OF TRUST</strong></h3>
+    <h3 class="center-text"><strong>(I-CITADEL ONE BELT ROAD TRUST - I-COBRTrust)</strong></h3>
+    <p>This Declaration of Trust is dated <strong><u>${agreementSignedDate}</u></strong> and shall form part of and is
+        issued under the Trust Deed (hereinafter referred to as "<strong>this Deed</strong>").</p>
+    <p>BETWEEN</p>
+    <table border="1" style="width:100%; border-collapse: collapse;">
+        <tr>
+            <td style="text-align: left; padding: 10px;" class="td-blue">Name</td>
+            <td style="text-align: left; padding: 10px;">${clientName}</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; padding: 10px;" class="td-blue">NRIC/Passport</td>
+            <td style="text-align: left; padding: 10px;">${clientIdentityId}</td>
+        </tr>
+        <tr>
+            <td style="text-align: left; padding: 10px;" class="td-blue">Address</td>
+            <td style="text-align: left; padding: 10px;">${clientAddress}</td>
+        </tr>
+    </table>
+    <p></p>
+    <p>(hereinafter referred to as <strong>"Settlor"</strong>.)</p>
+    <p>AND</p>
+    <p style="text-align: justify;"><strong>CITADEL TRUSTEE BERHAD</strong> (Company No.: 202001010278 / 1366598-H), a public limited company incorporated in Malaysia under the Companies Act 2016 and registered as a Trust Company under the Trust Companies Act 1949 and having its registered office and place of business at L3-1, Third Floor, Wisma LYL, No. 12, Jalan 51A/223, 46100 Petaling Jaya, Selangor (hereinafter referred to as <strong>"Trustee"</strong>).</p>
+   <p><strong>1.&#160; ESTABLISHMENT OF TRUST</strong></p>
+   <p style="text-align: justify;">1.1&#160; The trust is hereby established from the date of this Declaration of Trust subject to
+                the determination of the trust as provided in Clause 9 of the Trust Deed (hereinafter
+       referred to as the <strong>"Duration of Trust"</strong>).
+   </p>
+    <p><strong>2.&#160; TRUST FUND</strong></p>
+    <p style="text-align: justify;">2.1&#160; The Settlor hereby settles the following amount of money to the Trustee (hereinafter referred to as the
+                <strong>"Trust Fund"</strong>):-</p>
+    <table border="1" style="width:100%; border-collapse: collapse;">
+            <tr>
+                <td style="text-align: left; padding: 10px; white-space: nowrap; width: 20%;" class="td-blue">Amount</td>
+                <td style="text-align: left; padding: 10px;">RM ${trustFundAmount}</td>
+            </tr>
+        </table>
+    <div style="page-break-after: always;"></div>
+    <p><strong>3.&#160; BENEFICIARY AND DISTRIBUTION OF TRUST FUND</strong></p>
+    <p style="text-align: justify;">3.1&#160; The details of the Beneficiary of this Trust are provided below:</p>
+    <p><strong>Principal Beneficiary</strong></p>
+    <table border="1" style="width:100%; border-collapse: collapse;">
+            <thead>
+            <tr>
+                <td style="text-align: left; padding: 10px;" class="td-blue">Item</td>
+                <td style="text-align: left; padding: 10px;" class="td-blue" colspan="2">Details</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: left; padding: 10px;">Name</td>
+                <td style="text-align: left; padding: 10px;" colspan="2">${principalBeneficiaryName}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left; padding: 10px; width: 20%">NRIC/ Passport No.</td>
+                <td style="text-align: left; padding: 10px;"  colspan="2">${principalBeneficiaryIdentityId}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left; padding: 10px;">Address</td>
+                <td style="text-align: left; padding: 10px;" colspan="2">${principalBeneficiaryAddress}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left; padding: 10px;" rowspan="5">Bank Account Details</td>
+                <td style="text-align: left; padding: 10px; width: 30%;">Bank Name:</td>
+                <td style="text-align: left; padding: 10px;" >${principalBeneficiaryBankName}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left; padding: 10px; width: 30%;">Account Holder's name:</td>
+                <td style="text-align: left; padding: 10px;" >${principalBeneficiaryBankAccountHolderName}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left; padding: 10px; width: 30%;">Account No.:</td>
+                <td style="text-align: left; padding: 10px;" >${principalBeneficiaryBankAccountNumber}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left; padding: 10px; width: 30%;">Bank Address:</td>
+                <td style="text-align: left; padding: 10px;"  >${principalBeneficiaryBankAddress}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left; padding: 10px; width: 30%;">SWIFT Code:</td>
+                <td style="text-align: left; padding: 10px;"  >${principalBeneficiaryBankSwiftCode}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left; padding: 10px;">Interest</td>
+                <td style="text-align: left; padding: 10px;" colspan="2">100%</td>
+            </tr>
+            </tbody>
+        </table>
+    <p></p>
+    <p>
+        Upon death of the Principal Beneficiary, the Trust Fund and/or the proceeds received from the Trust Fund (if any) shall be distributed as follows:-
+    </p>
+    <table border="1" style="width:100%; border-collapse: collapse;">
+            <thead>
+            <tr>
+                <td class="td-blue" style="text-align: left; padding: 10px; width: 5%;">No.</td>
+                <td class="td-blue" style="text-align: left; padding: 10px; width: 25%;">Name</td>
+                <td class="td-blue" style="text-align: left; padding: 10px; width: 25%;">Identification No</td>
+                <td class="td-blue" style="text-align: left; padding: 10px; width: 40%;">Address</td>
+                <td class="td-blue" style="text-align: left; padding: 10px; width: 5%;" colspan="2">(%) of Distribution</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: left; padding: 10px; width: 5%;">1</td>
+                <td style="text-align: left; padding: 10px; width: 25%;">${beneficiaryOneName}</td>
+                <td style="text-align: left; padding: 10px; width: 25%;">${beneficiaryOneIdentityId}</td>
+                <td style="text-align: left; padding: 10px; width: 40%;">${beneficiaryOneAddress}</td>
+                <td style="text-align: left; padding: 10px; width: 5%;">${beneficiaryOneDistribution}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left; padding: 10px; width: 5%;">2</td>
+                <td style="text-align: left; padding: 10px; width: 25%;">${beneficiaryTwoName}</td>
+                <td style="text-align: left; padding: 10px; width: 25%;">${beneficiaryTwoIdentityId}</td>
+                <td style="text-align: left; padding: 10px; width: 40%;">${beneficiaryTwoAddress}</td>
+                <td style="text-align: left; padding: 10px; width: 5%;">${beneficiaryTwoDistribution}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left; padding: 10px; width: 5%;">3</td>
+                <td style="text-align: left; padding: 10px; width: 25%;">${beneficiaryThreeName}</td>
+                <td style="text-align: left; padding: 10px; width: 25%;">${beneficiaryThreeIdentityId}</td>
+                <td style="text-align: left; padding: 10px; width: 40%;">${beneficiaryThreeAddress}</td>
+                <td style="text-align: left; padding: 10px; width: 5%;">${beneficiaryThreeDistribution}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left; padding: 10px; width: 5%;">4</td>
+                <td style="text-align: left; padding: 10px; width: 25%;">${beneficiaryFourName}</td>
+                <td style="text-align: left; padding: 10px; width: 25%;">${beneficiaryFourIdentityId}</td>
+                <td style="text-align: left; padding: 10px; width: 40%;">${beneficiaryFourAddress}</td>
+                <td style="text-align: left; padding: 10px; width: 5%;">${beneficiaryFourDistribution}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left; padding: 10px; width: 5%;">5</td>
+                <td style="text-align: left; padding: 10px; width: 25%;">${beneficiaryFiveName}</td>
+                <td style="text-align: left; padding: 10px; width: 25%;">${beneficiaryFiveIdentityId}</td>
+                <td style="text-align: left; padding: 10px; width: 40%;">${beneficiaryFiveAddress}</td>
+                <td style="text-align: left; padding: 10px; width: 5%;">${beneficiaryFiveDistribution}</td>
+            </tr>
+            </tbody>
+        </table>
+    <div style="page-break-after: always;"></div>
+    <p><strong>4.&#160; ADMINISTRATION OF TRUST</strong></p>
+    <p style="text-align: justify;">4.1&#160; The Settlor has appointed the Trustee to manage and administer the Trust Fund in such authorised placements pursuant to Clause 5 of the Trust Deed.</p>
+    <p style="text-align: justify;">4.2&#160; The Settlor shall at all times hereafter keep save and harmless and agree to indemnify and continue to indemnify Trustee against all actions, proceedings, claims, demands, penalties, costs (including legal costs) and expenses which may be brought or made against or incurred by the Trustee by reason or on account of Trustee Settlor's / Settlor representative' instruction.</p>
+    <p style="text-align: justify;">4.3&#160; Upon the appointment of the Trustee, the Settlor grants the Trustee the power to manage and administer the Trust Fund and/or to appoint another party to manage and administer the Trust Fund with the written consent of the Settlor.</p>
+    <p style="margin-top: 60px; text-align: center"><em>&lt;The rest of this page is intentionally left blank&gt;</em></p>
+    <div style="page-break-after: always;"></div>
+    <p><strong>IN WITNESS WHEREOF,</strong> the parties hereto have set their hands on the day and year first above written.</p>
+    <table style="width:100%;">
+        <colgroup>
+            <col style="width: 50%;" />
+            <col style="width: 50%;" />
+        </colgroup>
+        <tbody>
+        <tr>
+            <td>Signed by</td>
+            <td style="padding-left: 5px;">]</td>
+        </tr>
+        <tr>
+            <td>Settlor</td>
+            <td style="padding-left: 5px;">]</td>
+        </tr>
+        <tr>
+            <td>in the presence of :</td>
+            <td style="padding-left: 5px;">]</td>
+        </tr>
+        </tbody>
+    </table>
+    <table style="width:100%;">
+        <tr>
+            <td style="vertical-align: bottom; min-height: 100px;">
+                <#if clientSignatureImage?has_content>
+                    <p><img src="${clientSignatureImage}" alt="Client Signature" width="200" height="100" style="border-bottom: 1px solid #000;"/></p>
+                <#else>
+                    <p>_________________________</p>
+                </#if>
+            </td>
+            <td style="vertical-align: bottom; min-height: 100px;">
+                <#if agentSignatureImage?has_content>
+                    <p><img src="${agentSignatureImage}" alt="Agent Signature" width="200" height="100" style="border-bottom: 1px solid #000;"/></p>
+                <#else>
+                    <p>_________________________</p>
+                </#if>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;">
+                <p>SETTLOR</p>
+                <p>Name: ${clientName}</p>
+                <p>NRIC/Passport No.: ${clientIdentityId}</p>
+            </td>
+            <td style="vertical-align: top;">
+                <p>WITNESS</p>
+                <p>Name: ${agentName}</p>
+                <p>NRIC/Passport No.: ${agentIdentityId}</p>
+            </td>
+        </tr>
+    </table>
+    <p></p>
+    <table style="width:100%;">
+        <colgroup>
+            <col style="width: 50%;" />
+            <col style="width: 50%;" />
+        </colgroup>
+        <tbody>
+        <tr>
+            <td>Signed by</td>
+            <td style="padding-left: 5px;">]</td>
+        </tr>
+        <tr>
+            <td>For and on behalf of the Trustee </td>
+            <td style="padding-left: 5px;">]</td>
+        </tr>
+        <tr>
+            <td><strong>Citadel Trustee Berhad</strong></td>
+            <td style="padding-left: 5px;">]</td>
+        </tr>
+        <tr>
+            <td><strong>(Company Reg No.: 202001010278 (1366598-H))</strong></td>
+            <td style="padding-left: 5px;">]</td>
+        </tr>
+        <tr>
+            <td>in the presence of:</td>
+            <td style="padding-left: 5px;">]</td>
+        </tr>
+        </tbody>
+    </table>
+    <p></p>
+    <table style="width:100%;">
+        <tr>
+            <td style="vertical-align: bottom; min-height: 100px;">
+                <#if ceoSignatureImage?has_content>
+                    <p><img src="${ceoSignatureImage}" alt="Ceo Signature" width="200" height="100" style="border-bottom: 1px solid #000;"></p>
+                <#else>
+                    <p>_________________________</p>
+                </#if>
+            </td>
+            <td style="vertical-align: bottom; min-height: 100px;">
+                <#if directorSignatureImage?has_content>
+                    <p><img src="${directorSignatureImage}" alt="Director Signature" width="200" height="100" style="border-bottom: 1px solid #000;"/></p>
+                <#else>
+                    <p>_________________________</p>
+                </#if>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;">
+                <p>DIRECTOR</p>
+                <p>Name: ${ceoName}</p>
+                <p>NRIC No: ${ceoIdentityId}</p>
+            </td>
+            <td style="vertical-align: top;">
+                <p>DIRECTOR</p>
+                <p>Name: ${directorName}</p>
+                <p>NRIC No: ${directorIdentityId}</p>
+            </td>
+        </tr>
+    </table>
+
+    <div style="page-break-before: always;"></div>
+<p class="center-text">Dated this 01st day of ${agreementDateMonthYear}</p>
+<p></p><p></p>
+<p class="center-text"><strong>BETWEEN</strong></p>
+<p></p><p></p>
+<p class="center-text"><strong>The Settlor as listed under Schedule 1</strong></p>
+<p class="center-text"><strong>("THE SETTLOR")</strong></p>
+<p></p><p></p>
+<p class="center-text"><strong>AND</strong></p>
+<p></p><p></p>
+<p class="center-text"><strong>CITADEL TRUSTEE BERHAD</strong></p>
+<p class="center-text"><strong>[COMPANY REGISTRATION NO.: 202001010278 (1366598-H)]</strong></p><p></p>
+<p class="center-text"><strong>("THE TRUSTEE")</strong></p>
+<p></p><p></p>
+<p class="center-text">************************************************************</p><p></p>
+<p class="center-text">TRUST DEED</p><p></p>
+<p class="center-text">************************************************************</p><p></p>
+</div>
+<div style="page: section2; page-break-before: always;">
+    <div class="header2" style="margin-bottom: 20px">
+        <img style="filter: brightness(0.6) opacity(0.6);"
+                src="https://sgp1.digitaloceanspaces.com/nexstream-dev/citadel/settings/February2025/Tl5y2JFEqWuqvoqqUNjV.png"
+                height="53" width="220" alt="Citadel Logo"/>
+    </div>
+    <p class="center-text"><strong><u>TRUST DEED</u></strong></p>
+    <p><strong>THIS DEED</strong> is made on the 01st day of ${agreementDateMonthYear}</p>
+    <p><strong>BETWEEN</strong></p>
+    <table style="width:100%;">
+        <tbody>
+        <tr>
+            <td style="vertical-align: top"><p>(1)</p></td>
+            <td style="text-align: justify;"><p>The Settlor (hereinafter referred to as <strong>"the Settlor"</strong>) as specified in Schedule 1;</p></td>
+        </tr>
+        </tbody>
+    </table>
+    <p><strong>AND</strong></p>
+    <table style="width:100%;">
+        <tbody>
+        <tr>
+            <td style="vertical-align: top"><p>(2)</p></td>
+            <td style="text-align: justify;"><p><strong>Citadel Trustee Berhad (Company Registration No.: 202001010278 (1366598-H)</strong> is a public
+                limited company incorporated in Malaysia under the Companies Act 2016 and registered
+                as a trust company under the Trust Companies Act 1949 having its registered office and
+                business address at L3-1, Third Floor, Wisma LYL, No. 12, Jalan 51A/223, 46100 Petaling Jaya, Selangor of the second part (hereinafter referred to as <strong>"the Trustee"</strong>).</p>
+                <p>(<strong>The Settlor and the Trustee</strong> are hereinafter collectively referred to as <strong>"the Parties"</strong> and/or
+                    individually as <strong>"a Party"</strong>, as the context may permit)</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p><strong>WHEREAS:</strong></p>
+    <ol class="alpha-list">
+        <li><p>The Settlor is desirous of creating a trust for the benefit of the Beneficiary (as specified and defined in Clause 2.1 and under Schedule 1 of this Deed).</p></li>
+        <li><p>The Trustee is a public limited company incorporated in Malaysia under the laws of Malaysia and registered as a trust corporation under the Trust Companies Act 1949 and is authorised to conduct any of the activities listed under Section 8 of the Trust Companies Act 1949.</p></li>
+        <li><p>The Settlor wishes to establish a trust in favour of the Beneficiary and therefore is desirous of appointing the Trustee to act as a trustee to manage and administer the Trust Fund in accordance with the terms and conditions hereinafter appearing and the Trustee is agreeable to accept such appointment.</p></li>
+    </ol>
+    <p><strong>NOW IT IS AGREED BY THE PARTIES</strong> as follows: - </p>
+    <p><strong>1.&#160; Definition</strong></p>
+            <table style="width:100%;">
+                <tbody style="vertical-align: top">
+                <tr>
+                    <td>1.1&#160;</td>
+                    <td>The headings in this Deed are inserted for convenience only and shall not be taken, read and construed as essential parts of this Deed;</td>
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td>1.2&#160;</td>
+                    <td>References to clauses unless otherwise stated are to be construed as references to clauses of this Deed;</td>
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td>1.3&#160;</td>
+                    <td>All references to provisions of statutes include such provisions as modified or re-certified or re-enacted;</td>
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td>1.4&#160;</td>
+                    <td>Words applicable to natural persons include any body of persons, company, corporation, firm or partnership, corporate or unincorporated and vice versa;</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>1.5&#160;</td>
+                    <td>Words importing the masculine gender shall include the feminine and neuter gender and vice versa;</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>1.6&#160;</td>
+                    <td>The Schedules form part of this Deed and shall have effect as if set out in full in the body of this Deed and any references to this Deed includes the Schedules.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>1.7&#160;</td>
+                    <td>Unless the context otherwise requires, words in the singular shall include the plural and vice versa;</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>1.8&#160;</td>
+                    <td>Working days shall mean the working days in the state of Selangor Darul Ehsan.</td>
+                </tr><tr></tr>
+                </tbody>
+            </table>
+       <p></p>
+    <p><strong>2.&#160; Declaration of Trust</strong></p>
+            <table style="width:100%;">
+                <tbody style="vertical-align: top">
+                <tr>
+                    <td>2.1&#160;</td>
+                    <td>It is declared that the Settlor hereby establishes a revocable trust in favour of the person(s) listed in Schedule 1 (hereinafter collectively referred to as <strong>"the Beneficiary"</strong>) and appoints the Trustee as the trustee.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>2.2&#160;</td>
+                    <td>The Settlor declares the following: -
+                        <table>
+                            <tbody style="vertical-align: top">
+                            <tr>
+                                <td>(a)&#160;</td>
+                                <td>that at no point in time has the Trustee promoted, persuaded or influenced the Settlor
+                                    in any way on the establishment of this Trust; and</td>
+                            </tr><tr></tr>
+                            <tr>
+                                <td>(b)&#160;</td>
+                                <td>this Trust has been personally evaluated by the Settlor and the Settlor fully exonerates
+                                    and discharges the Trustee of any liability arising from the establishment of this Trust.</td>
+                            </tr><tr></tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr><tr></tr>
+                <tr>
+                    <td>2.3&#160;</td>
+                    <td>The Settlor is not declared bankrupt and that no proceedings for insolvency has been
+                        commenced against the Settlor.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>2.4&#160;</td>
+                    <td>The Settlor hereby declares and represents that such declaration and representation
+                        shall form the basis of which the Trustee enters into this Deed.</td>
+                </tr><tr></tr>
+                </tbody>
+            </table>
+        <p></p>
+        <p><strong>3.&#160; Purpose of the Trust</strong></p>
+            <table style="width:100%;">
+                <tbody style="vertical-align: top">
+                <tr>
+                    <td>3.1&#160;</td>
+                    <td>The purpose of this Trust is for the Trustee to manage and administer the monies <strong>("the Trust Fund")</strong> as described in <strong>Schedule 2 of this Agreement</strong> and to provide the proceeds (if any) from the Trust Fund to the Beneficiary throughout the tenure of the Trust as specified in Schedule 2 hereof.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>3.2&#160;</td>
+                    <td>The Trustee is hereby authorised by the Settlor to utilize the Trust Fund in accordance with the terms of the Authorised Placement as defined in Clause 5 below. For the avoidance of doubt, the Trustee shall not be held liable and/or responsible for the delay and/or non-payment of the proceeds of the Trust Fund (if any) as a result of the delay and/or failure by a third party or for reasons beyond its control.</td>
+                </tr>
+                </tbody>
+            </table>
+        <p></p>
+        <p><strong>4.&#160; Beneficiary</strong></p>
+            <table style="width:100%;">
+                <tbody style="vertical-align: top">
+                <tr>
+                    <td>4.1&#160;</td>
+                    <td>The Beneficiary of this Trust shall be the person(s) identified in Schedule 1 of this Deed and shall be bound by the terms and conditions of this Deed during the tenure of Trust as specified in Schedule 2 hereof and as long as they remain as Beneficiary.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>4.2&#160;</td>
+                    <td>Upon the instruction of the Settlor, the Trustee may at any time appoint additional person(s) as Beneficiary or remove any of the existing Beneficiary under this Trust by providing written notice to the Trustee and such change shall be effective within three (3) working days from the date the Trustee receives such notice.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>4.3&#160;</td>
+                    <td>In the event of death of any of the Beneficiary, if there is more than one Beneficiary,
+                        the share of such Beneficiary would be distributed equally between the remaining
+                        Beneficiary. In the event of death of the Beneficiary who is the only Beneficiary, then
+                        such shares will be distributed to the Settlor. As such, the death of any one of the
+                        Beneficiary shall not terminate this Trust or in any manner affect the powers of the
+                        Trustee.</td>
+                </tr>
+                </tbody>
+            </table>
+        <p></p>
+        <p><strong>5.&#160; Management of the Trust Fund</strong></p>
+            <table style="width:100%;">
+                <tbody style="vertical-align: top">
+                <tr>
+                    <td>5.1&#160;</td>
+                    <td>The Settlor hereby fully authorises and grants a discretionary mandate for the Trustee to manage and administer the Trust Fund as provided in Clause 6 below  whereby the Trustee shall have all the powers over and in respect of the Trust Fund and the Trustee could exercise as if the Trustee is the owner of the Trust Fund to place, in part or in whole, in the Authorised Placement.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>5.2&#160;</td>
+                    <td>Authorised Investments means any investment made by the Trustee at the instruction
+                        of the Settlor or the Settlor's appointed agent (where applicable) to generate income and profits arising from the Trust Fund, including but not limited to deposit of the
+                        Trust Fund in any accounts opened with any financial institution licensed by the
+                        Central Bank of Malaysia, any investment in equity of any entities incorporated under
+                        the Companies Act 2016 and Limited Liability Partnership 2012 (or its predecessor
+                        Acts, where applicable), investment in any immovable property or any other type of
+                        investments that the Settlor or Settlor's appointed agent, as the case may be, deem
+                        appropriate (<strong>"the Authorised Investment"</strong>).</td>
+                </tr>
+                </tbody>
+            </table>
+        <p></p>
+        <p><strong>6.&#160; Trustee Capacity and Powers</strong></p>
+            <table style="width:100%;">
+                <tbody style="vertical-align: top">
+                <tr>
+                    <td>6.1&#160;</td>
+                    <td>Subject to the mandate of the Settlor as provided in Clause 5.1 of this Deed for the management and administration of the Trust Fund, the Trustee shall have the capacity and power in addition to all the powers conferred by the Trustee Act 1949 as follows:-
+                        <table>
+                            <tbody style="vertical-align: top">
+                            <tr>
+                                <td>(a)&#160;</td>
+                                <td>to invest the Trust Fund in the Authorised Investment;</td>
+                            </tr><tr></tr>
+                            <tr>
+                                <td>(b)&#160;</td>
+                                <td>to execute power of attorney or other necessary documents to any person for the
+                                    purpose of executing, administering or managing the whole or any part of the
+                                    Trust Fund in accordance to this Deed;</td>
+                            </tr><tr></tr>
+                            <tr>
+                                <td>(c)&#160;</td>
+                                <td>to appoint any one or more of its own officers as its attorney (jointly and
+                                    severally if more than one) with power to execute documents on behalf of the
+                                    Trustee to manage the day-to-day operation of the Trust;</td>
+                            </tr><tr></tr>
+                            <tr>
+                                <td>(d)&#160;</td>
+                                <td> upon consulting and obtaining an expert opinion, to initiate or to defend, at its
+                                    discretion, any cause of action, affecting the Trust, whereupon all incidental legal
+                                    fee and cost thereof shall be deducted from the Trust Fund.</td>
+                            </tr><tr></tr>
+                            <tr>
+                                <td>(e)&#160;</td>
+                                <td>To safeguard client's assets as to ensure that the general principles and
+                                    prescriptive requirements are consistently adhered to.</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        <p></p>
+        <p><strong>7.&#160; Disbursement of Trust Fund</strong></p>
+            <table style="width:100%;">
+                <tbody style="vertical-align: top">
+                <tr>
+                    <td>7.1&#160;</td>
+                    <td>In the event that the Trustee exercises its discretion conferred under Clauses 5 and 6
+                        and subject to Clause 11 below, the Trustee shall disburse the Projected Return, if any,
+                        to the Beneficiary during the Tenure of this Trust commencing from the date of this
+                        Deed. If there are no Beneficiary, the Projected Return shall be released to the Settlor
+                        under the same terms of this Clause, and if the Settlor has passed away, the Projected
+                        Return to be released to the Settlor's successor or heir, subject to the applicability of
+                        Clause 7.4 below.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>7.2&#160;</td>
+                    <td>Subject to Clause 7.1 above, the disbursement of the proceeds of the Trust Fund, if any, shall be transferred and/or delivered to the recipient within thirty (30) working days or any extended period as mutually agreed between the Parties from the date of receipt of the same by the Trustee.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>7.3&#160;</td>
+                    <td>At the expiry and/or termination of the Trust, the Trustee shall release the Trust Fund and any accumulated income derived from the Trust Fund less accrued liabilities, debt and fees owing to the Trustee, to the Beneficiary. If there are no Beneficiary, the Trust Fund shall be released to the Settlor under the same terms of this Clause.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>7.4&#160;</td>
+                    <td>In the event of the Settlor become deceased prior to the expiry of the tenure of Trust as specified in Schedule 2 hereof, the continuation of the remaining tenure of Trust as specified in Schedule 2 hereof shall be subject to the decision of the Beneficiary (in order of priority) or if there are no Beneficiary, the Settlor's successor or heir. Upon receipt of notice to discontinue the Trust, the Trust Fund and the proceeds of the Trust Fund (if any) shall be distributed to the Beneficiary or if there are no Beneficiary, the Settlor's successor or heir within one (1) calendar month from the date of receipt of the said notice from the Beneficiary or if there are no Beneficiary, the Settlor's successor or heir, as the case may be, or such other duration as Parties may be agree in writing. For the avoidance of doubt, for the purpose of this sub-clause, the Trust shall continue to operate until decided otherwise.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>7.5&#160;</td>
+                    <td>Notwithstanding anything herein, the release of any Trust Fund and/or Projected
+                        Return shall be dependent on the provision of the satisfactory supporting documents
+                        to be provided by the Settlor and/or the Beneficiary and/or the successor or heir, as
+                        the case may be, as determined by the Trustee from time to time. For the avoidance of
+                        doubt, the Trustee shall not be liable or responsible for any damages caused by the
+                        delay in the release of the Trust Fund and/or the Projected Return as a result of the
+                        failure to comply with the terms of this clause by the Settlor and/or the Beneficiary
+                        and/or the successor or heir, as the case may be.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>7.6&#160;</td>
+                    <td>For avoidance of doubt, prior to the release of the Trust Fund and the proceeds of the Trust Fund (if any) pursuant to Clauses 7.1, 7.2, 7.3 and 7.4 above, the sum may be subjected to costs and expenses directly or indirectly incurred in connection to the establishment, management, operation and administration of the Trust including but not limited to any tax liability and Trustee Fee pursuant to Clause 11 below, charges or assessments whatsoever, stamp duties, statutory goods and services tax or any other governmental taxes or charges payable by the Trustee (if any) for which the Trustee may be liable in respect of such distribution (hereinafter referred to as <strong>"the Trust Expenses"</strong>) which may be deducted from the Trust Fund and proceeds of the Trust Fund.</td>
+                </tr>
+                </tbody>
+            </table>
+        <p></p>
+        <p><strong>8.&#160; Revocable Trust</strong></p>
+            <table style="width:100%;">
+                <tbody style="vertical-align: top">
+                <tr>
+                    <td>8.1&#160;</td>
+                    <td>The Trust hereby established shall be revocable at the option of the Settlor.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>8.2&#160;</td>
+                    <td>In the event the Settlor wishes to terminate the Trust prior to the expiry of the Tenure
+                        of the Trust, the Settlor shall provide one (1) month prior written notice to the Trustee
+                        and provided always that all outstanding Trustee Fees have been fully settled.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>8.3&#160;</td>
+                    <td>Notwithstanding any other clauses herein, the Trustee shall be entitled to terminate
+                        the Trust or resign as trustee of the Trust at any time by providing at least one (1)
+                        month prior written notice to the Settlor.</td>
+                </tr>
+                </tbody>
+            </table>
+        <p></p>
+        <p><strong>9.&#160; Determination of Trust</strong></p>
+            <table style="width:100%;">
+                <tbody style="vertical-align: top">
+                <tr>
+                    <td>9.1&#160;</td>
+                    <td>This Trust shall be determined upon the full disbursement of the Trust Fund and the proceeds of the Trust Fund (if any), in accordance with this Deed, to the Settlor or Beneficiary or the Settlor's heir or successor, as the case may be, including but not limited to the expiry of the tenure of Trust as specified in Schedule 2 hereof.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>9.2&#160;</td>
+                    <td>Prior to the expiry of the tenure of Trust as specified in Schedule 2 hereof, the same may be extended upon mutual consent by the Parties for a further duration as may be agreed in writing between the Parties.</td>
+                </tr>
+                </tbody>
+            </table>
+        <p></p>
+        <p><strong>10.&#160;Advisor and Agent</strong></p>
+        <p style="text-align: justify;">10.1&#160; The Trustee may in the conduct of the trust business employ and pay an advisor and/or agent whether a solicitor or other person, to transact or concur in doing all acts required to be done by the Trustee, including the receipt and payment of money, and any advisor and/or agent so employed shall be entitled to the relevant professional fees, charges and disbursement for business transacted and acts done by such advisors and/or agents, and the Trustee shall be fully reimbursed in respect of all costs so incurred and be entitled to set off such charges from the Trust Fund and/or any income derived from the Trust Fund.</p>
+        <p><strong>11.&#160; Trustee Fee</strong></p>
+            <table style="width:100%;">
+                <tbody style="vertical-align: top">
+                <tr>
+                    <td>11.1&#160;</td>
+                    <td>In consideration of the services provided by the Trustee, the Trustee may charge a fee
+                        for such amount as may be prescribed by the Trustee from time to time (<strong>"the Trustee Fee"</strong>) of which the Trustee is entitled to reimburse themselves the Trustee Fee from
+                        the Trust Fund.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>11.2&#160;</td>
+                    <td>The Settlor shall on presentation to him/her of the appropriate invoices, arrange or
+                        procure to arrange payment to or reimbursement of the Trustee Fees within fourteen
+                        (14) days from the date of such presentation in respect of all costs (including the
+                        Trustee Fee and legal costs), out of pocket expenses and other outgoings incurred by
+                        the Trustee in the performance of its duties hereunder including but not limited to all
+                        remuneration and other sums (which will be at normal commercial rates) payable to
+                        any agent, sub-agent or delegate appointed, if any.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>11.3&#160;</td>
+                    <td>For the avoidance of doubt, if the Settlor fails to pay the Trustee the Trustee Fee and/or
+                        the Trust Expenses, the Trustee shall be entitled to set-off the sums owing to them
+                        properly incurred from the performance of its duties from the Trust Fund and/or the
+                        Projected Return or from any accumulated income derived from the Trust Fund.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>11.4&#160;</td>
+                    <td>In the event that the Trust Fund is insufficient towards the settlement of the
+                        outstanding Trustee Fees when the same become due and payable, unless otherwise
+                        prohibited by law, the Trustee shall have lien over the Trust Fund with the power to
+                        sell any or all the assets under the Trust for the settlement of the outstanding Trustee
+                        Fee.</td>
+                </tr>
+                </tbody>
+            </table>
+        <p></p>
+        <p><strong>12.&#160; Duties of Trustee</strong></p>
+            <p>It shall be the Trustee's duty to: -</p>
+            <table>
+                <tbody style="vertical-align: top">
+                <tr>
+                    <td>(a)&#160;</td>
+                    <td> to maintain a complete record of all the necessary details of the Beneficiary including
+                        the name and residence of the Beneficiary and such other details as the Trustee may
+                        deem fit;</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>(b)&#160;</td>
+                    <td> to maintain accurate books and records showing the transactions i.e. receipts and
+                        disbursements relating to the Trust Fund and such other details as the Trustee may
+                        deem fit;</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>(c)&#160;</td>
+                    <td>to maintain books of the Trust for inspection by the Beneficiary and/or Settlor upon
+                        request at such reasonable times at the main office of the Trustee;</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>(d)&#160;</td>
+                    <td>to furnish the Beneficiary at special meetings the financial standing of the Trust and
+                        of such other accounts or information concerning the affairs of the Trust as the
+                        Beneficiary shall request.</td>
+                </tr>
+                </tbody>
+            </table>
+        <p></p>
+        <p><strong>13.&#160; Indemnification</strong></p>
+            <table style="width:100%;">
+                <tbody style="vertical-align: top">
+                <tr>
+                    <td>13.1&#160;</td>
+                    <td>The Trustee shall be entitled to be fully and completely indemnified to its satisfaction
+                        out of the Trust Fund including its proceeds against any costs (including legal costs
+                        on a solicitor-client basis), expenses, claims, demands, actions, proceedings, penalties,
+                        charges, losses, damages and liabilities of whatever nature howsoever incurred by
+                        them in the execution and discharge of their duties or in relation to the Trust and the
+                        Trust Fund, save where the same is caused by the actual fraud, gross negligence,
+                        wilful default or breach of trust by the Trustee.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>13.2&#160;</td>
+                    <td>To the extent permissible by the law, this clause shall survive the determination of this Deed and continue for so long as is necessary to give its full effect,
+                        notwithstanding any other provision in this Deed.</td>
+                </tr>
+                </tbody>
+            </table>
+        <p></p>
+        <p><strong>14.&#160; Exclusion of Liability</strong></p>
+            <table style="width:100%;">
+                <tbody style="vertical-align: top">
+                <tr>
+                    <td><p>14.1&#160;</p></td>
+                    <td><strong>Notwithstanding Clause 13.1 above,</strong> in the execution of the Trust and the powers of the Trustee, the Trustee and its representative(s) shall not be responsible or liable for:-
+                        <table>
+                            <tbody style="vertical-align: top">
+                            <tr>
+                                <td>(a)&#160;</td>
+                                <td>any loss suffered by reason of any improper placement made at the instruction of the Settlor and/or the Settlor's representative; and/or</td>
+                            </tr><tr></tr>
+                            <tr>
+                                <td>(b)&#160;</td>
+                                <td>from the carrying on of any business in good faith or in connection with the administration and management of the Trust;</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        by reason of any act or mistake made in good faith by the Trustee unless it is a result of gross negligence, wilful or fraudulent misconduct.
+                    </td>
+                </tr><tr></tr>
+                <tr>
+                    <td>14.2&#160;</td>
+                    <td>The Trustee shall be entitled to act upon the opinion or information obtained from
+                        legal counsel or other professionals whether instructed by the Trustee and/or the
+                        Settlor, and the Trustee shall be entitled to act upon any advice obtained from the
+                        bankers, accountants, valuers and other person appointed by the Trustee and believed
+                        by the Trustee to be an expert in relation to the matters upon which they are consulted
+                        whereupon the Trustee shall not be liable for any losses suffered by the parties in
+                        reliance upon such opinion, advice, statement or information provided by any such
+                        professionals.</td>
+                </tr>
+                </tbody>
+            </table>
+        <p></p>
+        <p><strong>15.&#160; Personal Data</strong></p>
+            <table style="width:100%;">
+                <tbody style="vertical-align: top">
+                <tr>
+                    <td>15.1&#160;</td>
+                    <td>The Settlor hereby warrants and represents that the Settlor has procured the consent
+                        of the owners(s) (if applicable) of the personal data that is provided to the Trustee
+                        which may include the personal data of the Settlor, Administrator and/or the
+                        Beneficiary, as the case may be (hereinafter referred to as <strong>"the Personal Data"</strong>).</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>15.2&#160;</td>
+                    <td>The Settlor unconditionally and irrevocably agrees that the Trustee may give,
+                        produce, divulge, reveal or otherwise make available the said Personal Data as may
+                        be necessary to any party in facilitating the execution of this Trust.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>15.3&#160;</td>
+                    <td>The Trustee undertakes not to transfer such Personal Data other than for the purpose
+                        of fulfilling its duties and to take reasonable measures to ensure that the Personal Data
+                        are stored safely and secure.</td>
+                </tr>
+                </tbody>
+            </table>
+        <p></p>
+        <p><strong>16.&#160; Confidentiality</strong></p>
+            <p>The parties agree that the contents of this Deed and all information provided by one party
+                to another in connection with this Deed or in the course of negotiations of this Deed, except
+                for such information which is or becomes part of the public domain through no act or
+                omission of the either party, must be held in strict confidence by each party and its
+                respective officers, employees, agents and servants and shall not without the prior written consent of such other party, divulge the Information to any other person or use the
+                Information other than for carrying out the purposes of this Deed except to the extent that
+                is required by law.</p>
+        <p></p>
+        <p><strong>17.&#160; Solicitors' Costs and Stamp Duty</strong></p>
+            <table style="width:100%;">
+                <tbody style="vertical-align: top">
+                <tr>
+                    <td>17.1&#160;</td>
+                    <td>All legal and/or solicitors' costs in drawing up this Deed and/or any other supplementary or additional documents incidental hereto shall be borne by the Settlor which may be deducted from the Trust Fund, unless otherwise stated by the Parties.</td>
+                </tr>
+                <tr>
+                    <td>17.2&#160;</td>
+                    <td>All stamps duty and registration fees there on shall be paid by settlor which may be deducted from the Trust Fund. The Settlor further agrees to pay, as and when required any additional or excess stamp duty and/or penalty that may be imposed by the Collector of Stamp Duties or such other competent authorities in respect of this Deed.</td>
+                </tr>
+                </tbody>
+            </table>
+        <p></p>
+        <p><strong>18.&#160; Notices</strong></p>
+            <p>Any notice required to be served or made by either party hereto to the other shall be in
+                writing and shall be deemed to be sufficiently served: - </p>
+            <table>
+                <tbody style="vertical-align: top">
+                <tr>
+                    <td>(a)&#160;</td>
+                    <td>if it is sent by prepaid registered post addressed to the other party at the address
+                        hereinbefore mentioned or to their last known address or to his solicitors and in such a
+                        case it shall be deemed (whether it is actually delivered or not) to have been received at
+                        the time when such registered letter would have, in the ordinary course, be delivered;</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>(b)&#160;</td>
+                    <td>if it is despatched by hand to the other party or his solicitor upon due acknowledgement
+                        thereof;</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>(c)&#160;</td>
+                    <td>if sent by courier addressed to the other party at the address hereinbefore mentioned or
+                        to their last known address or to his solicitors shall be deemed to have been received
+                        upon acknowledgement of receipt of the same; or</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>(d)&#160;</td>
+                    <td>if sent by email, when the sender receives an automated message confirming delivery
+                        the correct documents and contents were emailed; or 30 minutes after the time sent (as
+                        recorded on the device from which the sender sent the email) unless the sender receives
+                        an automated message that the email has not been delivered, whichever happens first.</td>
+                </tr>
+                </tbody>
+            </table>
+        <p></p>
+        <p><strong>19.&#160; Miscellaneous</strong></p>
+            <p>It is agreed between the parties as follows: -</p>
+            <table>
+                <tbody style="vertical-align: top">
+                <tr>
+                    <td>(a)&#160;</td>
+                    <td><u>Time is of Essence</u>
+                        <p>Time wherever mentioned shall be of the essence of this Deed, both as regards the dates and periods specifically mentioned and as to any substituted dates and periods which maybe agreed in writing between the Parties.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>(b)&#160;</td>
+                    <td><u>Heading / Schedules</u>
+                        <p>The First Schedule and the Second Schedule hereto shall be taken read and construed as an essential part of this Deed (if any).</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>(c)&#160;</td>
+                    <td><u>No Waiver</u>
+                        <p>Knowledge or acquiescence by either party hereto of any breach of any of the
+                            conditions or covenants herein contained shall not operate as or be deemed to be
+                            waiver of such conditions or covenants or any of them and notwithstanding such
+                            knowledge or acquiescence each party hereto shall be entitled to exercise their
+                            respective rights under this Deed and to require strict performance by the other of the
+                            terms and conditions herein.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>(d)&#160;</td>
+                    <td><u>Indemnity</u>
+                        <p>Any indemnity contained in this Deed shall continue to have effect notwithstanding
+                            completion of this Deed herein.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>(e)&#160;</td>
+                    <td><u>General Duties of Parties</u>
+                        <p>Each of the Parties hereby agrees that he will upon the request of the other party hereto execute and do all such deeds, documents and things as may be necessary to carry this Deed into effect.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>(f)&#160;</td>
+                    <td><u>Variation of Terms</u>
+                        <p>It is hereby agreed and declared by both Parties that notwithstanding any of the provisions of this Deed to the contrary, the provisions and terms of this Deed may at any time and from time to time be varied or amended by mutual consent of the Parties hereto by means of a mutual exchange of letters as the Parties hereto may agree upon from time to time and thereupon such amendments and variations shall be deemed to become effective to the relevant provisions of this Deed and the relevant provisions of this Deed shall be deemed to have been amended or varied accordingly and shall be read and construed as if such amendments and variations have been incorporated in and had formed part of this Deed at the time of execution thereof.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>(g)&#160;</td>
+                    <td><u>Severability</u>
+                        <p>If any provision hereof is held to be illegal, invalid or unenforceable under present or future laws, such provision shall be fully severable and this Deed shall be construed and enforced as if such illegal, invalid or unenforceable provision had never comprised a part hereof and the remaining provisions shall remain in full force and effect and shall not be affected by the illegal, invalid or unenforceable provision or by its severance here from. In lieu of such illegal, invalid or unenforceable provision, there shall be added automatically as part hereof a provision, as similar in terms to such illegal, invalid or unenforceable provision as may be possible that is legal, valid and enforceable so as to give effect to the intent of the Parties hereunder.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>(h)&#160;</td>
+                    <td><u>Successors ad Assigns</u>
+                        <p>This Deed shall be binding on the respective heirs, personal representatives, successors in title and assigns of the Parties.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>(i)&#160;</td>
+                    <td><u>No Assignment</u>
+                        <p>Unless otherwise provided in this Deed, neither party shall assign or transfer all or any
+                            part of its rights under this Deed nor delegate its performance under this Deed without
+                            the prior written consent of the other party. Any assignment, transfer or delegation
+                            which is made without such prior written consent shall constitute a breach of this Deed.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>(j)&#160;</td>
+                    <td><u>No Partnership or Agency</u>
+                        <p>The provisions of this Deed shall not be construed or taken to constitute (i) a
+                            partnership between the parties; (ii) either party to be the agent of the other party; or
+                            (iii) an authority to either party to represent or bind or pledge the credit of any of the
+                            other party in any way.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>(k)&#160;</td>
+                    <td><u>Entire Deed</u>
+                        <p>This Deed shall herewith constitute the entire agreement between the Parties hereto
+                            with respect to the subject matter of this Deed and shall supersede all prior agreements
+                            and undertakings, both written and oral, with respect to the subject matter hereof
+                            except as otherwise expressly provided herein.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>(l)&#160;</td>
+                    <td><u>Rights and Remedies</u>
+                        <p>The rights and remedies provided in this Deed are cumulative and are not exclusive of
+                            any rights or remedies of the parties provided at law, and no failure or delay in the
+                            exercise or the partial exercise of any such right or remedy or the exercise of any other
+                            right or remedy shall affect or impair any such right or remedy.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>(m)&#160;</td>
+                    <td><u>Counterparts</u>
+                        <p>This Deed may be executed by any one or more of the parties hereto in any number of
+                            counterparts, each of which shall be deemed to be original, but all such counterparts
+                            shall together constitute the same instrument.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>(n)&#160;</td>
+                    <td><u>Governing Law and Jurisdiction</u>
+                        <p>This Deed shall be governed by and construed in accordance with the laws of Malaysia and the
+                            parties irrevocably submit to the jurisdiction of the Courts of Malaysia.</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        <p></p>
+        <p><strong>20.&#160; Force Majeure</strong></p>
+            <table style="width:100%;">
+                <tbody style="vertical-align: top">
+                <tr>
+                    <td>(a)&#160;</td>
+                    <td>The Parties hereto shall not be liable for failures or delays in performing their
+                        obligations hereunder arising from any cause beyond their control, including but not limited to, act of God, acts of civil or military authority, fires, strikes, lockouts or labour
+                        disputes, pandemic/ epidemics, wars, riots, earthquakes, storms, typhoons and floods and
+                        in the event of any such delay, the time for either Party's performance shall be extended for a
+                        period equal to the time lost by reason of the delay. Save where such delay is caused by the act
+                        or omission of the other Party, in which event the rights, remedy and liabilities of the Parties
+                        shall be those conferred and imposed by the terms of this Deed and by law.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>(b)&#160;</td>
+                    <td>In the event of any foregoing delay occurs, the delaying Party shall promptly notify the
+                        other in writing of the reasons for the delay and the likely duration of the delay,
+                        whereby the performance of such Party's obligation shall be suspended during the
+                        period that the conditions specified in the foregoing sub-clause persist and such Party
+                        shall be granted an extension of time for performance equal to the period of the delay.
+                        Provided that if the conditions shall continue beyond the duration of six (6) months,
+                        either Party may terminate this Deed forthwith by written notice to the other Party.</td>
+                </tr><tr></tr>
+                <tr>
+                    <td>(c)&#160;</td>
+                    <td>Upon such termination, the Trustee shall release the Trust Fund and any accumulated
+                        income (if any) derived from the Trust Fund minus all liabilities, debt and fees owing
+                        to the Trustee, to the Beneficiary and this Deed shall become null and void and be of
+                        no further effect and neither party shall have any further claims against the other
+                        arising from this Deed, save for antecedent breach if any.</td>
+                </tr>
+                </tbody>
+            </table>
+        <p style="margin-top: 60px; text-align: center"><em>(the remaining part of this page is intentionally left blank)</em></p>
+        <p></p>
+    <div style="page-break-after: always;"></div>
+    <p class="center-text"><strong>SCHEDULE 1</strong></p>
+    <p class="center-text">(To be read and construed as an essential part of this Agreement)</p>
+    <table border="1" cellpadding="5" cellspacing="0" class="schedule">
+        <colgroup>
+            <col style="width: 5%;" />
+            <col style="width: 20%;" />
+            <col style="width: 25%;" />
+            <col style="width: 50%;" />
+        </colgroup>
+        <thead>
+        <tr>
+            <th class="td-blue">Section</th>
+            <th class="td-blue">Item</th>
+            <th class="td-blue">Details</th>
+            <th class="td-blue">${agreementFileName}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td rowspan="6" style="text-align: center; vertical-align: top">1</td>
+            <td rowspan="6" style="vertical-align: top">Details of Settlor</td>
+            <td>Name:</td>
+            <td>${clientName}</td>
+        </tr>
+        <tr>
+            <td>NRIC No.:</td>
+            <td>${clientIdentityId}</td>
+        </tr>
+        <tr>
+            <td>Home Address:</td>
+            <td>${clientAddress}</td>
+        </tr>
+        <tr>
+            <td>Mobile Phone No.:</td>
+            <td>${clientPhoneNumber}</td>
+        </tr>
+        <tr>
+            <td>Email Address:</td>
+            <td>${clientEmail}</td>
+        </tr>
+        <tr>
+            <td>Person in Charge:</td>
+            <td>${clientPIC}</td>
+        </tr>
+        <tr>
+            <td rowspan="30" style="text-align: center; vertical-align: top">2</td>
+            <td rowspan="30" style="vertical-align: top">Details of Beneficiaries (up to five (5) beneficiaries.)</td>
+            <td style="background: #d3d3d3">Name:</td>
+            <td style="background: #d3d3d3">${beneficiaryOneName}</td>
+        </tr>
+        <tr>
+            <td style="background: #d3d3d3">Relation to the Settlor:</td>
+            <td style="background: #d3d3d3">${beneficiaryOneRelation}</td>
+        </tr>
+        <tr>
+            <td style="background: #d3d3d3">NRIC No.:</td>
+            <td style="background: #d3d3d3">${beneficiaryOneIdentityId}</td>
+        </tr>
+        <tr>
+            <td style="background: #d3d3d3">Home Address:</td>
+            <td style="background: #d3d3d3">${beneficiaryOneAddress}</td>
+        </tr>
+        <tr>
+            <td style="background: #d3d3d3">Mobile Phone No.:</td>
+            <td style="background: #d3d3d3">${beneficiaryOnePhoneNumber}</td>
+        </tr>
+        <tr>
+            <td style="background: #d3d3d3">Email Address:</td>
+            <td style="background: #d3d3d3">${beneficiaryOneEmail}</td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td>${beneficiaryTwoName}</td>
+        </tr>
+        <tr>
+            <td>Relation to the Settlor:</td>
+            <td>${beneficiaryTwoRelation}</td>
+        </tr>
+        <tr>
+            <td>NRIC No.:</td>
+            <td>${beneficiaryTwoIdentityId}</td>
+        </tr>
+        <tr>
+            <td>Home Address:</td>
+            <td>${beneficiaryTwoAddress}</td>
+        </tr>
+        <tr>
+            <td>Mobile Phone No.:</td>
+            <td>${beneficiaryTwoPhoneNumber}</td>
+        </tr>
+        <tr>
+            <td>Email Address:</td>
+            <td>${beneficiaryTwoEmail}</td>
+        </tr>
+        <tr>
+            <td style="background: #d3d3d3">Name:</td>
+            <td style="background: #d3d3d3">${beneficiaryThreeName}</td>
+        </tr>
+        <tr>
+            <td style="background: #d3d3d3">Relation to the Settlor:</td>
+            <td style="background: #d3d3d3">${beneficiaryThreeRelation}</td>
+        </tr>
+        <tr>
+            <td style="background: #d3d3d3">NRIC No.:</td>
+            <td style="background: #d3d3d3">${beneficiaryThreeIdentityId}</td>
+        </tr>
+        <tr>
+            <td style="background: #d3d3d3">Home Address:</td>
+            <td style="background: #d3d3d3">${beneficiaryThreeAddress}</td>
+        </tr>
+        <tr>
+            <td style="background: #d3d3d3">Mobile Phone No.:</td>
+            <td style="background: #d3d3d3">${beneficiaryThreePhoneNumber}</td>
+        </tr>
+        <tr>
+            <td style="background: #d3d3d3">Email Address:</td>
+            <td style="background: #d3d3d3">${beneficiaryThreeEmail}</td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td>${beneficiaryFourName}</td>
+        </tr>
+        <tr>
+            <td>Relation to the Settlor:</td>
+            <td>${beneficiaryFourRelation}</td>
+        </tr>
+        <tr>
+            <td>NRIC No.:</td>
+            <td>${beneficiaryFourIdentityId}</td>
+        </tr>
+        <tr>
+            <td>Home Address:</td>
+            <td>${beneficiaryFourAddress}</td>
+        </tr>
+        <tr>
+            <td>Mobile Phone No.:</td>
+            <td>${beneficiaryFourPhoneNumber}</td>
+        </tr>
+        <tr>
+            <td>Email Address:</td>
+            <td>${beneficiaryFourEmail}</td>
+        </tr>
+        <tr>
+            <td style="background: #d3d3d3">Name:</td>
+            <td style="background: #d3d3d3">${beneficiaryFiveName}</td>
+        </tr>
+        <tr>
+            <td style="background: #d3d3d3">Relation to the Settlor:</td>
+            <td style="background: #d3d3d3">${beneficiaryFiveRelation}</td>
+        </tr>
+        <tr>
+            <td style="background: #d3d3d3">NRIC No.:</td>
+            <td style="background: #d3d3d3">${beneficiaryFiveIdentityId}</td>
+        </tr>
+        <tr>
+            <td style="background: #d3d3d3">Home Address:</td>
+            <td style="background: #d3d3d3">${beneficiaryFiveAddress}</td>
+        </tr>
+        <tr>
+            <td style="background: #d3d3d3">Mobile Phone No.:</td>
+            <td style="background: #d3d3d3">${beneficiaryFivePhoneNumber}</td>
+        </tr>
+        <tr>
+            <td style="background: #d3d3d3">Email Address:</td>
+            <td style="background: #d3d3d3">${beneficiaryFiveEmail}</td>
+        </tr>
+        </tbody>
+    </table>
+    <p style="margin-top: 60px; text-align: center"><em>&lt;The rest of this page is intentionally left blank&gt;</em></p>
+    <div style="page-break-after: always;"></div>
+    <p class="center-text"><strong>SCHEDULE 2</strong></p>
+    <p class="center-text">(To be read and construed as an essential part of this Agreement)</p>
+    <table border="1" style="width:100%;" cellpadding="5" cellspacing="0" class="schedule">
+        <thead border="1">
+        <tr>
+        <th>Trust Fund</th>
+        <th>Types of Asset: Cash</th>
+        <th>Amount: ${trustFundAmount}</th>
+        <th>Currency: Ringgit Malaysia</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Tenure of Trust</td>
+            <td colspan="3">3 years from the date of execution of this Deed, with an
+                option to extend further for a period of 3 years.</td>
+        </tr>
+        <tr>
+            <td>Notice of Termination</td>
+            <td colspan="3">1 month prior written notice</td>
+        </tr>
+        </tbody>
+    </table>
+    <p style="margin-top: 60px; text-align: center"><em>&lt;The rest of this page is intentionally left blank&gt;</em></p>
+    <div style="page-break-after: always;"></div>
+    <p><strong>IN WITNESS WHEREOF,</strong> the parties hereto have executed this Agreement on the date first written above.</p>
+    <table style="width:100%;">
+        <colgroup>
+            <col style="width: 50%;" />
+            <col style="width: 50%;" />
+        </colgroup>
+        <tbody>
+        <tr>
+            <td>Signed by</td>
+            <td style="padding-left: 5px;">]</td>
+        </tr>
+        <tr>
+            <td>Settlor</td>
+            <td style="padding-left: 5px;">]</td>
+        </tr>
+        <tr>
+            <td>in the presence of :</td>
+            <td style="padding-left: 5px;">]</td>
+        </tr>
+        </tbody>
+    </table>
+    <table style="width:100%;">
+        <tr>
+            <td style="vertical-align: bottom; min-height: 100px;">
+                <#if clientSignatureImage?has_content>
+                    <p><img src="${clientSignatureImage}" alt="Client Signature" width="200" height="100" style="border-bottom: 1px solid #000;"/></p>
+                <#else>
+                    <p>_________________________</p>
+                </#if>
+            </td>
+            <td style="vertical-align: bottom; min-height: 100px;">
+                <#if agentSignatureImage?has_content>
+                    <p><img src="${agentSignatureImage}" alt="Agent Signature" width="200" height="100" style="border-bottom: 1px solid #000;"/></p>
+                <#else>
+                    <p>_________________________</p>
+                </#if>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;">
+                <p>SETTLOR</p>
+                <p>Name: ${clientName}</p>
+                <p>NRIC/Passport No.: ${clientIdentityId}</p>
+            </td>
+            <td style="vertical-align: top;">
+                <p>WITNESS</p>
+                <p>Name: ${agentName}</p>
+                <p>NRIC/Passport No.: ${agentIdentityId}</p>
+            </td>
+        </tr>
+    </table>
+    <p></p>
+    <table style="width:100%;">
+        <colgroup>
+            <col style="width: 50%;" />
+            <col style="width: 50%;" />
+        </colgroup>
+        <tbody>
+        <tr>
+            <td>Signed by</td>
+            <td style="padding-left: 5px;">]</td>
+        </tr>
+        <tr>
+            <td>For and on behalf of the Trustee </td>
+            <td style="padding-left: 5px;">]</td>
+        </tr>
+        <tr>
+            <td><strong>Citadel Trustee Berhad</strong></td>
+            <td style="padding-left: 5px;">]</td>
+        </tr>
+        <tr>
+            <td><strong>(Company Reg No.: 202001010278 (1366598-H))</strong></td>
+            <td style="padding-left: 5px;">]</td>
+        </tr>
+        <tr>
+            <td>in the presence of:</td>
+            <td style="padding-left: 5px;">]</td>
+        </tr>
+        </tbody>
+    </table>
+    <p></p>
+    <table style="width:100%;">
+        <tr>
+            <td style="vertical-align: bottom; min-height: 100px;">
+                <#if ceoSignatureImage?has_content>
+                    <p><img src="${ceoSignatureImage}" alt="Ceo Signature" width="200" height="100" style="border-bottom: 1px solid #000;"></p>
+                <#else>
+                    <p>_________________________</p>
+                </#if>
+            </td>
+            <td style="vertical-align: bottom; min-height: 100px;">
+                <#if directorSignatureImage?has_content>
+                    <p><img src="${directorSignatureImage}" alt="Director Signature" width="200" height="100" style="border-bottom: 1px solid #000;"/></p>
+                <#else>
+                    <p>_________________________</p>
+                </#if>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;">
+                <p>DIRECTOR</p>
+                <p>Name: ${ceoName}</p>
+                <p>NRIC No: ${ceoIdentityId}</p>
+            </td>
+            <td style="vertical-align: top;">
+                <p>DIRECTOR</p>
+                <p>Name: ${directorName}</p>
+                <p>NRIC No: ${directorIdentityId}</p>
+            </td>
+        </tr>
+    </table>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</body>
+</html>

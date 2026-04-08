@@ -1,0 +1,726 @@
+import 'dart:convert';
+
+import 'package:citadel_super_app/app_folder/app_color.dart';
+import 'package:citadel_super_app/app_folder/app_constant.dart';
+import 'package:citadel_super_app/app_folder/app_spacing.dart';
+import 'package:citadel_super_app/app_folder/app_text_style.dart';
+import 'package:citadel_super_app/app_folder/app_utils.dart';
+import 'package:citadel_super_app/custom_router.dart';
+import 'package:citadel_super_app/data/repository/sign_up_repository.dart';
+import 'package:citadel_super_app/data/state/app_state.dart';
+import 'package:citadel_super_app/data/state/client_signup_state.dart';
+import 'package:citadel_super_app/data/state/country_code_state.dart';
+import 'package:citadel_super_app/data/state/existing_client_state.dart';
+import 'package:citadel_super_app/extension/string_extension.dart';
+import 'package:citadel_super_app/extension/web_service_extension.dart';
+import 'package:citadel_super_app/helper/easy_loading_helper.dart';
+import 'package:citadel_super_app/helper/form_validation_helper.dart';
+import 'package:citadel_super_app/helper/parameter_helper.dart';
+import 'package:citadel_super_app/main.dart';
+import 'package:citadel_super_app/project_widget/appbar/citadel_app_bar.dart';
+import 'package:citadel_super_app/project_widget/background/citadel_background.dart';
+import 'package:citadel_super_app/project_widget/button/primary_button.dart';
+import 'package:citadel_super_app/project_widget/dialog/app_dialog.dart';
+import 'package:citadel_super_app/project_widget/dropdown/app_dropdown.dart';
+import 'package:citadel_super_app/project_widget/form/app_date_picker_form_field.dart';
+import 'package:citadel_super_app/project_widget/form/app_form.dart';
+import 'package:citadel_super_app/project_widget/form/app_text_form_field.dart';
+import 'package:citadel_super_app/service/document_capture_service.dart';
+import 'package:collection/collection.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+class ClientIdDetailsPage extends StatefulHookConsumerWidget {
+  final formKey = GlobalKey<AppFormState>();
+
+  ClientIdDetailsPage({super.key});
+
+  @override
+  ConsumerState<ClientIdDetailsPage> createState() =>
+      ClientIdDetailsPageState();
+}
+
+class ClientIdDetailsPageState extends ConsumerState<ClientIdDetailsPage> {
+  late final TextEditingController nameController;
+  late final TextEditingController documentNumberController;
+  late final TextEditingController dobController;
+  late final TextEditingController genderController;
+  late final TextEditingController nationalityController;
+  late final TextEditingController documentTypeController;
+
+  String? _frontImageBase64;
+  String? _backImageBase64;
+
+  @override
+  void initState() {
+    super.initState();
+    nameController = TextEditingController();
+    documentNumberController = TextEditingController();
+    dobController = TextEditingController();
+    genderController = TextEditingController();
+    nationalityController = TextEditingController();
+    documentTypeController = TextEditingController(text: 'MYKAD');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    ref.watch(clientSignUpProvider);
+    ref.watch(existingClientProvider);
+
+    final constants = ref.read(appProvider).constants ?? [];
+    final genderConstants = constants.firstWhere(
+        (element) => element.category == AppConstantsKey.gender);
+    final genderOptions = genderConstants.list!
+        .map((e) => AppDropDownItem(value: e.key!, text: e.value!))
+        .toList();
+
+    final countries = ref.read(countryCodeProvider).countryCodes ?? [];
+    final nationalityOptions = countries
+        .map((country) => AppDropDownItem(
+            value: country.countryName ?? '',
+            text: country.countryName ?? ''))
+        .toList();
+
+    final documentTypeOptions = [
+      AppDropDownItem(value: 'MYKAD', text: 'MyKad'),
+      AppDropDownItem(value: 'PASSPORT', text: 'Passport'),
+      AppDropDownItem(value: 'MYPR', text: 'MyPR'),
+      AppDropDownItem(value: 'MYKID', text: 'MyKid'),
+      AppDropDownItem(value: 'IKAD', text: 'iKad'),
+      AppDropDownItem(value: 'MYTENTERA', text: 'MyTentera'),
+    ];
+
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        widget.formKey.currentState?.validateFormButton();
+      });
+      return;
+    }, []);
+
+    return CitadelBackground(
+        backgroundType: BackgroundType.darkToBright2,
+        appBar: const CitadelAppBar(title: 'Identity Verification'),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: AppForm(
+            key: widget.formKey,
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Confirm ID Details', style: AppTextStyle.header1),
+                  gapHeight24,
+
+                  // Document Type Selection
+                  AppDropdown(
+                    formKey: widget.formKey,
+                    label: 'Document Type',
+                    fieldKey: AppFormFieldKey.documentTypeKey,
+                    hintText: 'Select document type',
+                    textController: documentTypeController,
+                    options: documentTypeOptions,
+                    onSelected: (selected) {
+                      documentTypeController.text = selected.value;
+                      widget.formKey.currentState?.validateFormButton();
+                    },
+                  ),
+                  gapHeight16,
+
+                  // Full Name
+                  AppTextFormField(
+                    formKey: widget.formKey,
+                    label: 'Full Name (same as ID)',
+                    controller: nameController,
+                    fieldKey: AppFormFieldKey.nameKey,
+                    hint: 'eg. John Doe',
+                  ),
+                  gapHeight16,
+
+                  // Document Number
+                  AppTextFormField(
+                    formKey: widget.formKey,
+                    label: '${documentTypeController.text} Number',
+                    controller: documentNumberController,
+                    fieldKey: AppFormFieldKey.documentNumberKey,
+                    keyboardType:
+                        const TextInputType.numberWithOptions(signed: true),
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    maxLength: documentTypeController.text == 'MYKAD' ? 12 : null,
+                    validator: (value) {
+                      if (documentTypeController.text == 'MYKAD') {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your ID number';
+                        }
+                        if (value.length < 12) {
+                          return 'Invalid MyKad number';
+                        }
+                      }
+                      return '';
+                    },
+                    hint: 'eg. 123456789012',
+                  ),
+                  gapHeight16,
+
+                  // Date of Birth
+                  AppDatePickerFormField(
+                    formKey: widget.formKey,
+                    label: 'Date of Birth',
+                    controller: dobController,
+                    isEnabled: true,
+                  ),
+                  gapHeight16,
+
+                  // Gender
+                  AppDropdown(
+                    formKey: widget.formKey,
+                    label: 'Gender',
+                    fieldKey: AppFormFieldKey.genderKey,
+                    hintText: 'Select gender',
+                    textController: genderController,
+                    options: genderOptions,
+                    onSelected: (selected) {
+                      genderController.text = selected.text;
+                      widget.formKey.currentState?.validateFormButton();
+                    },
+                  ),
+                  gapHeight16,
+
+                  // Nationality
+                  AppDropdown(
+                    formKey: widget.formKey,
+                    label: 'Nationality',
+                    fieldKey: AppFormFieldKey.nationalityKey,
+                    hintText: 'Select nationality',
+                    textController: nationalityController,
+                    options: nationalityOptions,
+                    onSelected: (selected) {
+                      nationalityController.text = selected.text;
+                      widget.formKey.currentState?.validateFormButton();
+                    },
+                  ),
+                  gapHeight32,
+
+                  // Document Image Upload
+                  _ManualDocumentUploadSection(
+                    documentType: documentTypeController.text,
+                    frontImageBase64: _frontImageBase64,
+                    backImageBase64: _backImageBase64,
+                    onFrontImageCaptured: (base64) {
+                      setState(() {
+                        _frontImageBase64 = base64;
+                      });
+                      widget.formKey.currentState?.validateFormButton();
+                    },
+                    onBackImageCaptured: (base64) {
+                      setState(() {
+                        _backImageBase64 = base64;
+                      });
+                      widget.formKey.currentState?.validateFormButton();
+                    },
+                    onClearFront: () {
+                      setState(() {
+                        _frontImageBase64 = null;
+                      });
+                    },
+                    onClearBack: () {
+                      setState(() {
+                        _backImageBase64 = null;
+                      });
+                    },
+                  ),
+                  gapHeight48,
+
+                  // Continue Button
+                  PrimaryButton(
+                    key: const Key(AppFormFieldKey.primaryButtonValidateKey),
+                    onTap: () async {
+                      FocusScope.of(context).unfocus();
+
+                      // Validate images are uploaded
+                      final isPassport = documentTypeController.text == 'PASSPORT';
+                      if (!isPassport && (_frontImageBase64 == null || _backImageBase64 == null)) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Please upload both front and back of your ID'),
+                            backgroundColor: AppColor.errorRed,
+                          ),
+                        );
+                        return;
+                      }
+                      if (isPassport && _frontImageBase64 == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Please upload the front of your passport'),
+                            backgroundColor: AppColor.errorRed,
+                          ),
+                        );
+                        return;
+                      }
+
+                      await widget.formKey.currentState!.validate(
+                          onSuccess: (formData) async {
+                        await validateClientId(context, ref, formData);
+                      });
+                    },
+                    title: 'Continue',
+                  ),
+                  gapHeight16,
+                ],
+              ),
+            ),
+          ),
+        ));
+  }
+
+  Future<void> validateClientId(
+      BuildContext context, WidgetRef ref, formData) async {
+    SignUpRepository repo = SignUpRepository();
+
+    final req = ParameterHelper().clientIdentifyValidationParam(
+      documentTypeController.text,
+      formData,
+      frontImage: _frontImageBase64,
+      backImage: _backImageBase64,
+    );
+
+    EasyLoadingHelper.show();
+    await repo.clientIdentityValidation(req).baseThen(
+      context,
+      onResponseSuccess: (response) {
+        globalRef
+            .read(clientSignUpProvider.notifier)
+            .setClientIdentityDetailsRequestVo(req);
+
+        Navigator.pushNamed(context, CustomRouter.personalDetails);
+      },
+      onResponseError: (e, s) {
+        if (e.message.contains('validation')) {
+          FormValidationHelper()
+              .resolveValidationError(widget.formKey, e.message);
+        } else {
+          if (e.message.equalsIgnoreCase(
+              'api.account.registered.with.identity.card.number')) {
+            showDialog(
+                context: context,
+                builder: (ctx) {
+                  return AppDialog(
+                    title: 'Identity Card Used',
+                    message:
+                        'This identity card number is already registered. Please contact our support team for assistance.',
+                    isRounded: true,
+                    positiveOnTap: () {
+                      Navigator.pop(context);
+                      Navigator.popUntil(context, (routes) {
+                        if ([
+                          CustomRouter.signUp,
+                        ].contains(routes.settings.name)) {
+                          return true;
+                        }
+                        return false;
+                      });
+                    },
+                    showNegativeButton: false,
+                  );
+                });
+          } else {
+            ScaffoldMessenger.of(getAppContext() ?? context)
+                .showSnackBar(SnackBar(content: Text(e.message)));
+          }
+        }
+      },
+    ).whenComplete(() => EasyLoadingHelper.dismiss());
+  }
+}
+
+/// Manual document upload section - no OCR, just image capture
+class _ManualDocumentUploadSection extends StatelessWidget {
+  final String documentType;
+  final String? frontImageBase64;
+  final String? backImageBase64;
+  final Function(String) onFrontImageCaptured;
+  final Function(String) onBackImageCaptured;
+  final VoidCallback onClearFront;
+  final VoidCallback onClearBack;
+
+  const _ManualDocumentUploadSection({
+    required this.documentType,
+    this.frontImageBase64,
+    this.backImageBase64,
+    required this.onFrontImageCaptured,
+    required this.onBackImageCaptured,
+    required this.onClearFront,
+    required this.onClearBack,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final isPassport = documentType.equalsIgnoreCase('PASSPORT');
+    final needsBackImage = !isPassport;
+
+    return Container(
+      padding: EdgeInsets.all(16.w),
+      decoration: BoxDecoration(
+        color: AppColor.white.withValues(alpha: 0.03),
+        borderRadius: BorderRadius.circular(16.r),
+        border: Border.all(
+          color: AppColor.white.withValues(alpha: 0.08),
+          width: 1,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Upload ID Document',
+            style: AppTextStyle.header3.copyWith(color: AppColor.white),
+          ),
+          gapHeight8,
+          Text(
+            'Please capture or upload clear images of your ID',
+            style: AppTextStyle.bodyText.copyWith(
+              color: AppColor.popupGray,
+              fontSize: 12.spMin,
+            ),
+          ),
+          gapHeight24,
+
+          // Front Image Upload
+          _ImageUploadCard(
+            label: '$documentType (Front)',
+            imageBase64: frontImageBase64,
+            onCapture: () => _showImageSourcePicker(
+              context,
+              onImageSelected: onFrontImageCaptured,
+            ),
+            onClear: onClearFront,
+          ),
+
+          if (needsBackImage) ...[
+            gapHeight16,
+            // Back Image Upload
+            _ImageUploadCard(
+              label: '$documentType (Back)',
+              imageBase64: backImageBase64,
+              onCapture: () => _showImageSourcePicker(
+                context,
+                onImageSelected: onBackImageCaptured,
+                isBack: true,
+              ),
+              onClear: onClearBack,
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
+  void _showImageSourcePicker(
+    BuildContext context, {
+    required Function(String) onImageSelected,
+    bool isBack = false,
+  }) async {
+    final source = await showModalBottomSheet<String>(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (ctx) => Container(
+        padding: EdgeInsets.all(24.w),
+        decoration: BoxDecoration(
+          color: AppColor.mainBlack,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 40.w,
+              height: 4.h,
+              decoration: BoxDecoration(
+                color: AppColor.white.withValues(alpha: 0.3),
+                borderRadius: BorderRadius.circular(2.r),
+              ),
+            ),
+            gapHeight24,
+            Text(
+              isBack ? 'Capture Back of Document' : 'Capture Front of Document',
+              style: AppTextStyle.header2.copyWith(color: AppColor.white),
+            ),
+            gapHeight32,
+            _SourceOptionCard(
+              icon: Icons.camera_alt_rounded,
+              iconColor: AppColor.brightBlue,
+              title: 'Take Photo',
+              description: 'Use camera to capture',
+              onTap: () => Navigator.pop(context, 'camera'),
+            ),
+            gapHeight16,
+            _SourceOptionCard(
+              icon: Icons.photo_library_rounded,
+              iconColor: const Color(0xFF8B5CF6),
+              title: 'Choose from Gallery',
+              description: 'Select existing photo',
+              onTap: () => Navigator.pop(context, 'gallery'),
+            ),
+            gapHeight24,
+          ],
+        ),
+      ),
+    );
+
+    if (source == null) return;
+
+    // Use document capture service to get image
+    final documentCaptureService = DocumentCaptureService();
+    String? imageBase64;
+
+    if (source == 'camera') {
+      imageBase64 = await documentCaptureService.captureFromCamera();
+    } else {
+      imageBase64 = await documentCaptureService.pickFromGallery();
+    }
+
+    if (imageBase64 != null) {
+      onImageSelected(imageBase64);
+    }
+  }
+}
+
+/// Source option card
+class _SourceOptionCard extends StatelessWidget {
+  final IconData icon;
+  final Color iconColor;
+  final String title;
+  final String description;
+  final VoidCallback onTap;
+
+  const _SourceOptionCard({
+    required this.icon,
+    required this.iconColor,
+    required this.title,
+    required this.description,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(16.r),
+        child: Container(
+          padding: EdgeInsets.all(16.w),
+          decoration: BoxDecoration(
+            color: iconColor.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(16.r),
+            border: Border.all(
+              color: iconColor.withValues(alpha: 0.3),
+            ),
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 48.w,
+                height: 48.h,
+                decoration: BoxDecoration(
+                  color: iconColor.withValues(alpha: 0.2),
+                  borderRadius: BorderRadius.circular(12.r),
+                ),
+                child: Icon(icon, color: iconColor, size: 24.sp),
+              ),
+              gapWidth16,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: AppTextStyle.header3.copyWith(
+                        color: AppColor.white,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      description,
+                      style: AppTextStyle.caption.copyWith(
+                        color: AppColor.white.withValues(alpha: 0.6),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: AppColor.white.withValues(alpha: 0.3),
+                size: 16.sp,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Image upload card with tap to capture
+class _ImageUploadCard extends StatelessWidget {
+  final String label;
+  final String? imageBase64;
+  final VoidCallback onCapture;
+  final VoidCallback onClear;
+
+  const _ImageUploadCard({
+    required this.label,
+    this.imageBase64,
+    required this.onCapture,
+    required this.onClear,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Icon(
+              Icons.badge_outlined,
+              size: 16.sp,
+              color: AppColor.brightBlue,
+            ),
+            gapWidth8,
+            Text(
+              label,
+              style: AppTextStyle.label.copyWith(
+                color: AppColor.white.withValues(alpha: 0.8),
+              ),
+            ),
+            if (imageBase64 != null) ...[
+              const Spacer(),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
+                decoration: BoxDecoration(
+                  color: AppColor.green.withValues(alpha: 0.2),
+                  borderRadius: BorderRadius.circular(4.r),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.check_circle, size: 12.sp, color: AppColor.green),
+                    gapWidth4,
+                    Text(
+                      'Uploaded',
+                      style: AppTextStyle.caption.copyWith(
+                        color: AppColor.green,
+                        fontSize: 10.spMin,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ],
+        ),
+        gapHeight8,
+        GestureDetector(
+          onTap: onCapture,
+          child: Container(
+            width: double.infinity,
+            height: 160.h,
+            decoration: BoxDecoration(
+              color: AppColor.white.withValues(alpha: 0.05),
+              borderRadius: BorderRadius.circular(12.r),
+              border: Border.all(
+                color: imageBase64 != null
+                    ? AppColor.green.withValues(alpha: 0.3)
+                    : AppColor.white.withValues(alpha: 0.1),
+                width: 1,
+              ),
+            ),
+            child: imageBase64 != null
+                ? Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(11.r),
+                        child: Image.memory(
+                          base64Decode(imageBase64!),
+                          width: double.infinity,
+                          height: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Positioned(
+                        top: 8.h,
+                        right: 8.w,
+                        child: Row(
+                          children: [
+                            GestureDetector(
+                              onTap: onCapture,
+                              child: Container(
+                                padding: EdgeInsets.all(6.w),
+                                decoration: BoxDecoration(
+                                  color: AppColor.mainBlack.withValues(alpha: 0.7),
+                                  borderRadius: BorderRadius.circular(6.r),
+                                ),
+                                child: Icon(
+                                  Icons.camera_alt,
+                                  color: Colors.white,
+                                  size: 16.sp,
+                                ),
+                              ),
+                            ),
+                            gapWidth8,
+                            GestureDetector(
+                              onTap: onClear,
+                              child: Container(
+                                padding: EdgeInsets.all(6.w),
+                                decoration: BoxDecoration(
+                                  color: AppColor.errorRed.withValues(alpha: 0.8),
+                                  borderRadius: BorderRadius.circular(6.r),
+                                ),
+                                child: Icon(
+                                  Icons.close,
+                                  color: Colors.white,
+                                  size: 16.sp,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(12.w),
+                        decoration: BoxDecoration(
+                          color: AppColor.brightBlue.withValues(alpha: 0.1),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(
+                          Icons.add_a_photo,
+                          color: AppColor.brightBlue,
+                          size: 24.sp,
+                        ),
+                      ),
+                      gapHeight12,
+                      Text(
+                        'Tap to upload',
+                        style: AppTextStyle.bodyText.copyWith(
+                          color: AppColor.white.withValues(alpha: 0.6),
+                        ),
+                      ),
+                    ],
+                  ),
+          ),
+        ),
+      ],
+    );
+  }
+}

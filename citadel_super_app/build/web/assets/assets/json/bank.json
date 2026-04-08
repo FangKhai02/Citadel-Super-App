@@ -1,0 +1,274 @@
+{
+    "bankList": [
+        {
+            "bank_name": "Maybank Berhad",
+            "swift_code": "MBBEMYKL",
+            "bank_address": "Menara Maybank, 100, Jalan Tun Perak",
+            "bank_postcode": "50050",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "Maybank Islamic Berhad",
+            "swift_code": "MBISMYKL",
+            "bank_address": "Level 30, Menara Maybank, 100, Jalan Tun Perak",
+            "bank_postcode": "50050",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "CIMB Bank Berhad",
+            "swift_code": "CIBBMYKL",
+            "bank_address": "17th Floor Menara CIMB, Jalan Stesen Sentral 2, Kuala Lumpur Sentral",
+            "bank_postcode": "50470",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "CIMB Islamic Bank Berhad",
+            "swift_code": "CTBBMYKL",
+            "bank_address": "17th Floor Menara CIMB, Jalan Stesen Sentral 2, Kuala Lumpur Sentral",
+            "bank_postcode": "50470",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "Bank Islam Malaysia Berhad",
+            "swift_code": "BIMBMYKL",
+            "bank_address": "32nd Floor, Menara Bank Islam, No.22, Jalan Perak",
+            "bank_postcode": "50450",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "Bank Kerjasama Rakyat Malaysia Berhad",
+            "swift_code": "BKRMMYKL",
+            "bank_address": "Menara Kembar Bank Rakyat, No.33, Jalan Rakyat",
+            "bank_postcode": "50470",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "RHB Bank Berhad",
+            "swift_code": "RHBBMYKL",
+            "bank_address": "Tower Two & Three, RHB Centre, Jalan Tun Razak",
+            "bank_postcode": "50400",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "RHB Islamic Bank Berhad",
+            "swift_code": "RHBAMYKL",
+            "bank_address": "Corporate Office, Level 11, Menara Yayasan Tun Razak, 200, Jalan Bukit Bintang",
+            "bank_postcode": "55100",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "Hong Leong Bank Berhad",
+            "swift_code": "HLBBMYKL",
+            "bank_address": "Level 19, Menara Hong Leong, 6 Jalan Damanlela, Bukit Damansara",
+            "bank_postcode": "50490",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "Hong Leong Islamic Bank Berhad",
+            "swift_code": "HLIBMYKL",
+            "bank_address": "Level 23, Menara Hong Leong, No. 6, Jalan Damanlela, Bukit Damansara",
+            "bank_postcode": "50490",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "Public Bank Berhad",
+            "swift_code": "PBBEMYKL",
+            "bank_address": "Menara Public Bank, 146 Jalan Ampang, Peti Surat 12542",
+            "bank_postcode": "50450",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "Public Islamic Bank Berhad",
+            "swift_code": "PIBEMYK1",
+            "bank_address": "Level 14, Menara Public Bank, 146, Jalan Ampang",
+            "bank_postcode": "50450",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "Bank Simpanan Nasional",
+            "swift_code": "BSNAMYK1",
+            "bank_address": "Wisma BSN, 117, Jalan Ampang",
+            "bank_postcode": "50450",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "HSBC Bank Malaysia Berhad",
+            "swift_code": "HBMBMYKL",
+            "bank_address": "Level 21, Menara IQ, Lingkaran TRX, Tun Razak Exchange",
+            "bank_postcode": "55188",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "Ambank (M) Berhad",
+            "swift_code": "ARBKMYKL",
+            "bank_address": "Level 48, Menara AmBank, No. 8, Jalan Yap Kwan Seng",
+            "bank_postcode": "50450",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "AmBank Islamic Berhad",
+            "swift_code": "AISLMYKL",
+            "bank_address": "Level 45, Menara AmBank, No.8, Jalan Yap Kwan Seng",
+            "bank_postcode": "50450",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "Al Rajhi Banking & Investment Corporation (M) Berhad",
+            "swift_code": "RJHIMYKL",
+            "bank_address": "Ground Floor, East Block, Wisma Selangor Dredging, 142-B Jalan Ampang",
+            "bank_postcode": "50450",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "Bank Muamalat Malaysia Berhad",
+            "swift_code": "BMMBMYKL",
+            "bank_address": "Menara Bumiputra, Jalan Melaka, Peti Surat 10407",
+            "bank_postcode": "50913",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "Standard Chartered Bank (M) Berhad",
+            "swift_code": "SCBLMYKX",
+            "bank_address": "Level 25, Equatorial Plaza, Jalan Sultan Ismail",
+            "bank_postcode": "50250",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "Affin Bank Berhad",
+            "swift_code": "PHBMMYKL",
+            "bank_address": "Tingkat 19, Menara AFFIN, Lingkaran TRX, Tun Razak Exchange",
+            "bank_postcode": "55188",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "Affin Islamic Bank Berhad",
+            "swift_code": "AIBBMYKL",
+            "bank_address": "Tingkat 19, Menara AFFIN, Lingkaran TRX, Tun Razak Exchange",
+            "bank_postcode": "55188",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "United Overseas Bank Berhad",
+            "swift_code": "UOVBMYKL",
+            "bank_address": "Menara UOB, Jalan Raja Laut, Peti Surat 11212",
+            "bank_postcode": "50738",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "OCBC Al-Amin Bank Berhad",
+            "swift_code": "OABBMYKL",
+            "bank_address": "Level 25, Wisma Lee Rubber, No. 1 Jalan Melaka",
+            "bank_postcode": "50100",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "Alliance Bank Malaysia Berhad",
+            "swift_code": "MFBBMYKL",
+            "bank_address": "Menara Multi Purpose, Capital Square, No. 8, Jalan Munshi Abdullah",
+            "bank_postcode": "50100",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "Alliance Islamic Bank Berhad",
+            "swift_code": "ALSRMYKL",
+            "bank_address": "Level 22, Menara Multi Purpose, Capital Square, 8 Jalan Munshi Abdullah",
+            "bank_postcode": "50100",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "OCBC Bank Berhad",
+            "swift_code": "OCBCMYKL",
+            "bank_address": "Menara OCBC, 18 Jalan Tun Perak",
+            "bank_postcode": "50050",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "MBSB Bank Berhad",
+            "swift_code": "AFBQMYKL",
+            "bank_address": "Level 25, Menara MBSB Bank, PJ Sentral, Lot 12, Persiaran Barat, Seksyen 52",
+            "bank_postcode": "46200",
+            "bank_city": "Petaling Jaya",
+            "bank_state": "Selangor",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "Agro Bank",
+            "swift_code": "AGOBMYKL",
+            "bank_address": "Leboh Pasar Besar, Peti Surat 10815",
+            "bank_postcode": "50726",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "GX Bank Berhad",
+            "swift_code": "GXSPMYKL",
+            "bank_address": "Level 5, 1 First Avenue, Bandar Utama",
+            "bank_postcode": "47800",
+            "bank_city": "Petaling Jaya",
+            "bank_state": "Selangor",
+            "bank_country": "Malaysia"
+        },
+        {
+            "bank_name": "Bank of China (Malaysia) Berhad",
+            "swift_code": "BKCHMYKL",
+            "bank_address": "Ground, Mezz & 1st Floor, Plaza OSK, 25 Jalan Ampang",
+            "bank_postcode": "50450",
+            "bank_city": "Kuala Lumpur",
+            "bank_state": "Wilayah Persekutuan Kuala Lumpur",
+            "bank_country": "Malaysia"
+        }
+    ]
+}

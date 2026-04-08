@@ -1,0 +1,12 @@
+package com.citadel.backend.vo.Enum;
+
+public enum Status {
+    COMPLETED, PENDING, FAILED, SUCCESS, CANCELLED, EXPIRED, INVALID, UNKNOWN, OPEN, REVERSED, PROCESSING,
+    IN_REVIEW,
+    DRAFT,
+    ACTIVE,
+    APPROVED,
+    REJECTED,
+    WITHDRAWN,
+    AGREEMENT
+}

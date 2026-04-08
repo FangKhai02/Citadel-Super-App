@@ -1,0 +1,1 @@
+fastlane beta platform:both type:both

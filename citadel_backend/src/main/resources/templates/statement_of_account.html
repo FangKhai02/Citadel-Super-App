@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Statement of Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size:8px;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+        }
+        .header {
+            width: 100%;
+            border-bottom: 2px solid black;
+            padding-bottom: 10px;
+            overflow: hidden; /* Clears floating elements */
+        }
+        .logo {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .title {
+            display: inline-block;
+            font-size: 22px;
+            font-weight: bold;
+            border: 2px solid black;
+            padding: 8px 15px;
+            text-align: center;
+            float: right; /* Moves title to the right */
+        }
+        .details {
+            margin-top: 20px;
+        }
+        .details p {
+            margin: 5px 0;
+        }
+        .details strong {
+            display: inline-block;
+            width: 150px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th {
+            background-color: #2F75B5;
+            color: white;
+            padding: 8px;
+            text-align: center;
+        }
+        td {
+            padding: 8px;
+            text-align: left;
+        }
+        .journal{
+            font-weight:bold;
+        }
+        .numeric {
+            text-align: right;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            padding: 10px;
+            border-top: 2px solid black;
+        }
+        .left-text {
+            display: block;
+            text-align: left; /* Left-aligns only the query text */
+            margin-bottom: 5px;
+        }
+        .center-text {
+            text-align: center; /* Centers only the company details */
+        }
+        .amount-due {
+            margin-top: 15px;
+            text-align: right;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Header Section -->
+    <div class="logo">
+        <img style="filter: brightness(0.6) opacity(0.6);"
+             src="https://sgp1.digitaloceanspaces.com/nexstream-dev/citadel/settings/March2025/CTB.png"
+             height="53" width="220" alt="Citadel Logo"/>
+    </div>
+    <div class="title">STATEMENT OF ACCOUNT</div>
+
+    <!-- Client Details -->
+    <div class="details">
+        <p><strong>Client Name:</strong> ${client_name}</p>
+        <p><strong>Customer Address:</strong> ${customer_address}</p>
+        <p><strong>Statement Date:</strong> ${statement_date}</p>
+        <p><strong>Reference No:</strong> ${reference_no}</p>
+    </div>
+
+    <!-- Transactions Table -->
+    <table>
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Journal Type</th>
+            <th>Ref. No</th>
+            <th>Description</th>
+            <th>Debit(RM)</th>
+            <th>Credit (RM)</th>
+            <th>Balance(RM)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <#list records as record>
+        <tr>
+            <td>${record.date}</td>
+            <td >${record.journal_type}</td>
+            <td>${record.ref_no}</td>
+            <td>${record.description}</td>
+            <td class="numeric">${record.home_dr}</td>
+            <td class="numeric">${record.home_cr}</td>
+            <td class="numeric">${record.home_balance}</td>
+        </tr>
+        </#list>
+        <tr style="background-color: #d3d3d3; font-weight: bold;">
+            <td colspan="3"></td>
+            <td></td>
+            <td class="numeric">${total_home_dr}</td>
+            <td class="numeric">${total_home_cr}</td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Amount Due -->
+    <p class="amount-due">Amount Due to Client: ${amount_due}</p>
+
+    <!-- Footer -->
+
+    <div class="footer">
+        <b class="left-text">If you have any queries, please contact us via email or call us at 03-76652108</b>
+        <p class="center-text"><strong>CITADEL TRUSTEE BERHAD <br/>
+            202001010278(1366598-H)</strong><br/>
+            100-2.807, Block J, 129 Offices, No. 72A, Jalan Prof Diraja Ungku Aziz,<br/>
+            46200 Petaling Jaya, Selangor<br/>
+            SELANGOR DARUL EHSAN<br/>
+            O: 03-76652108<br/>
+            E: admin@citadeltrustee.com</p>
+    </div>
+</div>
+</body>
+</html>
