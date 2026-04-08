@@ -125,6 +125,11 @@ class ClientIdDetailsPageState extends ConsumerState<ClientIdDetailsPage> {
                     options: documentTypeOptions,
                     onSelected: (selected) {
                       documentTypeController.text = selected.value;
+                      // Clear uploaded images when document type changes
+                      setState(() {
+                        _frontImageBase64 = null;
+                        _backImageBase64 = null;
+                      });
                       widget.formKey.currentState?.validateFormButton();
                     },
                   ),
