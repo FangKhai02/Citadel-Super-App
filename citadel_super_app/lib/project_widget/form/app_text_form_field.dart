@@ -101,7 +101,7 @@ class AppTextFormFieldState extends BaseFormFieldState<AppTextFormField> {
         if (widget.validator != null) {
           errorMsg = widget.validator?.call(text) ?? '';
         } else if (text.isEmpty) {
-          errorMsg = '${widget.label} is required';
+          errorMsg = 'Please key in a value';
         } else {
           setState(() {
             errorMsg = '';

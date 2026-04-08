@@ -73,12 +73,16 @@ class AppDropdownState extends BaseFormFieldState<AppDropdown> {
         e.text.toLowerCase() == textEditingController.text.toLowerCase() ||
         e.value.toLowerCase() == textEditingController.text.toLowerCase());
 
+    // Clear error when user starts typing or selecting
     textEditingController.addListener(() {
       final value = textEditingController.text;
+      if (value.isNotEmpty && errorMsg.isNotEmpty) {
+        setState(() {
+          errorMsg = '';
+        });
+      }
       if (value.isNotEmpty) {
         menuController.close();
-        // final list = widget.options
-        //     .where((e) => e.text.toLowerCase() == value.toLowerCase());
         selectedItem = widget.options.firstWhereOrNull((e) =>
             e.text.toLowerCase() == textEditingController.text.toLowerCase() ||
             e.value.toLowerCase() == textEditingController.text.toLowerCase());
@@ -193,13 +197,14 @@ class AppDropdownState extends BaseFormFieldState<AppDropdown> {
   bool validate() {
     if (widget.isRequired) {
       setState(() {
-        if (widget.isRequired &&
-            (selectedItem == null || textEditingController.text.isEmpty)) {
+        if (selectedItem == null || textEditingController.text.isEmpty) {
           errorMsg = 'Please select a value';
           widget.formKey?.currentState
               ?.setError(fieldKey: widget.fieldKey, errorMsg: errorMsg);
         } else {
           errorMsg = '';
+          widget.formKey?.currentState
+              ?.setError(fieldKey: widget.fieldKey, errorMsg: '');
         }
       });
     } else {

@@ -177,209 +177,160 @@ class ClientIdDetailsPageState extends ConsumerState<ClientIdDetailsPage> {
                   ),
                   gapHeight32,
 
-                  // Form Section Title
-                  Text('Document Information',
-                    style: AppTextStyle.label.copyWith(
-                      color: AppColor.white.withValues(alpha: 0.7),
-                      fontSize: 12.spMin,
-                      letterSpacing: 0.5,
-                    ),
-                  ),
-                  gapHeight16,
-
-                  // Document Type Selection
-                  AppDropdown(
-                    formKey: widget.formKey,
-                    label: 'Document Type',
-                    fieldKey: AppFormFieldKey.documentTypeKey,
-                    hintText: 'Select document type',
-                    textController: documentTypeController,
-                    options: documentTypeOptions,
-                    onSelected: (selected) {
-                      documentTypeController.text = selected.value;
-                      // Clear uploaded images when document type changes
-                      setState(() {
-                        _frontImageBase64 = null;
-                        _backImageBase64 = null;
-                      });
-                      widget.formKey.currentState?.validateFormButton();
-                    },
-                  ),
-                  gapHeight16,
-
-                  // Document Number
-                  AppTextFormField(
-                    formKey: widget.formKey,
-                    label: '${documentTypeController.text} Number',
-                    controller: documentNumberController,
-                    fieldKey: AppFormFieldKey.documentNumberKey,
-                    keyboardType:
-                        const TextInputType.numberWithOptions(signed: true),
-                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                    maxLength: documentTypeController.text == 'MYKAD' ? 12 : null,
-                    validator: (value) {
-                      if (documentTypeController.text == 'MYKAD') {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your ID number';
-                        }
-                        if (value.length < 12) {
-                          return 'Invalid MyKad number';
-                        }
-                      }
-                      return '';
-                    },
-                    hint: 'eg. 123456789012',
-                  ),
-                  gapHeight32,
-
-                  // Personal Information Section Title
-                  Text('Personal Information',
-                    style: AppTextStyle.label.copyWith(
-                      color: AppColor.white.withValues(alpha: 0.7),
-                      fontSize: 12.spMin,
-                      letterSpacing: 0.5,
-                    ),
-                  ),
-                  gapHeight16,
-
-                  // Full Name
-                  AppTextFormField(
-                    formKey: widget.formKey,
-                    label: 'Full Name (same as ID)',
-                    controller: nameController,
-                    fieldKey: AppFormFieldKey.nameKey,
-                    hint: 'eg. John Doe',
-                  ),
-                  gapHeight16,
-
-                  // Date of Birth
-                  AppDatePickerFormField(
-                    formKey: widget.formKey,
-                    label: 'Date of Birth',
-                    controller: dobController,
-                    isEnabled: true,
-                  ),
-                  gapHeight16,
-
-                  // Gender & Nationality Row (Two Column Layout)
-                  Row(
+                  // Document Information Section
+                  _buildSectionCard(
                     children: [
-                      Expanded(
-                        child: AppDropdown(
-                          formKey: widget.formKey,
-                          label: 'Gender',
-                          fieldKey: AppFormFieldKey.genderKey,
-                          hintText: 'Select',
-                          textController: genderController,
-                          options: genderOptions,
-                          onSelected: (selected) {
-                            genderController.text = selected.text;
-                            widget.formKey.currentState?.validateFormButton();
-                          },
-                        ),
+                      _buildSectionHeader(
+                        icon: Icons.description_outlined,
+                        title: 'Document Information',
                       ),
-                      SizedBox(width: 12.w),
-                      Expanded(
-                        child: AppDropdown(
-                          formKey: widget.formKey,
-                          label: 'Nationality',
-                          fieldKey: AppFormFieldKey.nationalityKey,
-                          hintText: 'Select',
-                          textController: nationalityController,
-                          options: nationalityOptions,
-                          onSelected: (selected) {
-                            nationalityController.text = selected.text;
-                            widget.formKey.currentState?.validateFormButton();
-                          },
-                        ),
+                      gapHeight20,
+
+                      // Document Type Selection
+                      AppDropdown(
+                        formKey: widget.formKey,
+                        label: 'Document Type',
+                        fieldKey: AppFormFieldKey.documentTypeKey,
+                        hintText: 'Select document type',
+                        textController: documentTypeController,
+                        options: documentTypeOptions,
+                        onSelected: (selected) {
+                          documentTypeController.text = selected.value;
+                          setState(() {
+                            _frontImageBase64 = null;
+                            _backImageBase64 = null;
+                          });
+                          widget.formKey.currentState?.validateFormButton();
+                        },
+                      ),
+                      gapHeight20,
+
+                      // Document Number
+                      AppTextFormField(
+                        formKey: widget.formKey,
+                        label: '${documentTypeController.text} Number',
+                        controller: documentNumberController,
+                        fieldKey: AppFormFieldKey.documentNumberKey,
+                        keyboardType:
+                            const TextInputType.numberWithOptions(signed: true),
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        maxLength: documentTypeController.text == 'MYKAD' ? 12 : null,
+                        validator: (value) {
+                          if (documentTypeController.text == 'MYKAD') {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your ID number';
+                            }
+                            if (value.length < 12) {
+                              return 'Invalid MyKad number';
+                            }
+                          }
+                          return '';
+                        },
+                        hint: 'eg. 123456789012',
+                      ),
+                    ],
+                  ),
+                  gapHeight24,
+
+                  // Personal Information Section
+                  _buildSectionCard(
+                    children: [
+                      _buildSectionHeader(
+                        icon: Icons.person_outline,
+                        title: 'Personal Information',
+                      ),
+                      gapHeight20,
+
+                      // Full Name
+                      AppTextFormField(
+                        formKey: widget.formKey,
+                        label: 'Full Name (same as ID)',
+                        controller: nameController,
+                        fieldKey: AppFormFieldKey.nameKey,
+                        hint: 'eg. John Doe',
+                      ),
+                      gapHeight20,
+
+                      // Date of Birth
+                      AppDatePickerFormField(
+                        formKey: widget.formKey,
+                        label: 'Date of Birth',
+                        controller: dobController,
+                        isEnabled: true,
+                      ),
+                      gapHeight20,
+
+                      // Gender & Nationality Row
+                      _buildGenderNationalityRow(genderOptions, nationalityOptions),
+                    ],
+                  ),
+                  gapHeight24,
+
+                  // Document Upload Section
+                  _buildSectionCard(
+                    children: [
+                      _buildSectionHeader(
+                        icon: Icons.photo_camera_outlined,
+                        title: 'Document Upload',
+                      ),
+                      gapHeight20,
+
+                      // Document Image Upload
+                      _ManualDocumentUploadSection(
+                        documentType: documentTypeController.text,
+                        frontImageBase64: _frontImageBase64,
+                        backImageBase64: _backImageBase64,
+                        onFrontImageCaptured: (base64) {
+                          print('[DEBUG] onFrontImageCaptured called');
+                          print('[DEBUG] documentType is: ${documentTypeController.text}');
+                          print('[DEBUG] current _backImageBase64 BEFORE setState: ${_backImageBase64?.substring(0, 30) ?? "null"}...');
+                          setState(() {
+                            print('[DEBUG] INSIDE setState - Setting _frontImageBase64');
+                            _frontImageBase64 = base64;
+                            print('[DEBUG] INSIDE setState - _frontImageBase64 now: ${_frontImageBase64?.substring(0, 30) ?? "null"}...');
+                            print('[DEBUG] INSIDE setState - _backImageBase64 still: ${_backImageBase64?.substring(0, 30) ?? "null"}...');
+                          });
+                          print('[DEBUG] AFTER setState - _frontImageBase64: ${_frontImageBase64?.substring(0, 30) ?? "null"}...');
+                          print('[DEBUG] AFTER setState - _backImageBase64: ${_backImageBase64?.substring(0, 30) ?? "null"}...');
+                          widget.formKey.currentState?.validateFormButton();
+                        },
+                        onBackImageCaptured: (base64) {
+                          print('[DEBUG] onBackImageCaptured called');
+                          print('[DEBUG] documentType is: ${documentTypeController.text}');
+                          print('[DEBUG] current _frontImageBase64 BEFORE setState: ${_frontImageBase64?.substring(0, 30) ?? "null"}...');
+                          print('[DEBUG] === CHECKPOINT 1 ===');
+                          setState(() {
+                            print('[DEBUG] INSIDE setState - Setting _backImageBase64');
+                            _backImageBase64 = base64;
+                            print('[DEBUG] INSIDE setState - _backImageBase64 now: ${_backImageBase64?.substring(0, 30) ?? "null"}...');
+                            print('[DEBUG] INSIDE setState - _frontImageBase64 still: ${_frontImageBase64?.substring(0, 30) ?? "null"}...');
+                          });
+                          print('[DEBUG] === CHECKPOINT 2 ===');
+                          print('[DEBUG] AFTER setState - _frontImageBase64: ${_frontImageBase64?.substring(0, 30) ?? "null"}...');
+                          print('[DEBUG] AFTER setState - _backImageBase64: ${_backImageBase64?.substring(0, 30) ?? "null"}...');
+                          print('[DEBUG] === CHECKPOINT 3 - About to call validateFormButton ===');
+                          widget.formKey.currentState?.validateFormButton();
+                          print('[DEBUG] === CHECKPOINT 4 - After validateFormButton ===');
+                          print('[DEBUG] AFTER validateFormButton - _frontImageBase64: ${_frontImageBase64?.substring(0, 30) ?? "null"}...');
+                          print('[DEBUG] AFTER validateFormButton - _backImageBase64: ${_backImageBase64?.substring(0, 30) ?? "null"}...');
+                        },
+                        onClearFront: () {
+                          setState(() {
+                            _frontImageBase64 = null;
+                          });
+                        },
+                        onClearBack: () {
+                          setState(() {
+                            _backImageBase64 = null;
+                          });
+                        },
                       ),
                     ],
                   ),
                   gapHeight32,
 
-                  // Document Upload Section Title
-                  Text('Document Upload',
-                    style: AppTextStyle.label.copyWith(
-                      color: AppColor.white.withValues(alpha: 0.7),
-                      fontSize: 12.spMin,
-                      letterSpacing: 0.5,
-                    ),
-                  ),
-                  gapHeight16,
-
-                  // Document Image Upload
-                  _ManualDocumentUploadSection(
-                    documentType: documentTypeController.text,
-                    frontImageBase64: _frontImageBase64,
-                    backImageBase64: _backImageBase64,
-                    onFrontImageCaptured: (base64) {
-                      setState(() {
-                        _frontImageBase64 = base64;
-                      });
-                      widget.formKey.currentState?.validateFormButton();
-                    },
-                    onBackImageCaptured: (base64) {
-                      setState(() {
-                        _backImageBase64 = base64;
-                      });
-                      widget.formKey.currentState?.validateFormButton();
-                    },
-                    onClearFront: () {
-                      setState(() {
-                        _frontImageBase64 = null;
-                      });
-                    },
-                    onClearBack: () {
-                      setState(() {
-                        _backImageBase64 = null;
-                      });
-                    },
-                  ),
-                  gapHeight48,
-
                   // Continue Button
-                  PrimaryButton(
-                    key: const Key(AppFormFieldKey.primaryButtonValidateKey),
-                    onTap: () async {
-                      FocusScope.of(context).unfocus();
-
-                      // Validate age restriction (must be at least 18)
-                      if (dobController.text.isNotEmpty) {
-                        if (!_isUserAtLeast18(dobController.text)) {
-                          _showAgeRestrictionDialog(context);
-                          return;
-                        }
-                      }
-
-                      // Validate images are uploaded
-                      final isPassport = documentTypeController.text == 'PASSPORT';
-                      if (!isPassport && (_frontImageBase64 == null || _backImageBase64 == null)) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Please upload both front and back of your ID'),
-                            backgroundColor: AppColor.errorRed,
-                          ),
-                        );
-                        return;
-                      }
-                      if (isPassport && _frontImageBase64 == null) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Please upload the front of your passport'),
-                            backgroundColor: AppColor.errorRed,
-                          ),
-                        );
-                        return;
-                      }
-
-                      await widget.formKey.currentState!.validate(
-                          onSuccess: (formData) async {
-                        await validateClientId(context, ref, formData);
-                      });
-                    },
-                    title: 'Continue',
-                  ),
-                  gapHeight16,
+                  _buildContinueButton(context),
                 ],
               ),
             ),
@@ -492,6 +443,133 @@ class ClientIdDetailsPageState extends ConsumerState<ClientIdDetailsPage> {
         }
       },
     ).whenComplete(() => EasyLoadingHelper.dismiss());
+  }
+
+  /// Build section card with consistent styling
+  Widget _buildSectionCard({required List<Widget> children}) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(20.w),
+      decoration: BoxDecoration(
+        color: AppColor.mainBlack.withValues(alpha: 0.5),
+        borderRadius: BorderRadius.circular(16.r),
+        border: Border.all(
+          color: AppColor.white.withValues(alpha: 0.08),
+          width: 1,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: children,
+      ),
+    );
+  }
+
+  /// Build section header with icon and title
+  Widget _buildSectionHeader({required IconData icon, required String title}) {
+    return Row(
+      children: [
+        Container(
+          width: 36.w,
+          height: 36.h,
+          decoration: BoxDecoration(
+            color: AppColor.brightBlue.withValues(alpha: 0.15),
+            borderRadius: BorderRadius.circular(10.r),
+          ),
+          child: Icon(icon, color: AppColor.brightBlue, size: 18.sp),
+        ),
+        gapWidth12,
+        Text(
+          title,
+          style: AppTextStyle.label.copyWith(
+            color: AppColor.white,
+            fontWeight: FontWeight.w600,
+            fontSize: 14.spMin,
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// Build gender and nationality row
+  Widget _buildGenderNationalityRow(
+      List<AppDropDownItem> genderOptions, List<AppDropDownItem> nationalityOptions) {
+    return Row(
+      children: [
+        Expanded(
+          child: AppDropdown(
+            formKey: widget.formKey,
+            label: 'Gender',
+            fieldKey: AppFormFieldKey.genderKey,
+            hintText: 'Select',
+            textController: genderController,
+            options: genderOptions,
+            onSelected: (selected) {
+              genderController.text = selected.text;
+              widget.formKey.currentState?.validateFormButton();
+            },
+          ),
+        ),
+        SizedBox(width: 12.w),
+        Expanded(
+          child: AppDropdown(
+            formKey: widget.formKey,
+            label: 'Nationality',
+            fieldKey: AppFormFieldKey.nationalityKey,
+            hintText: 'Select',
+            textController: nationalityController,
+            options: nationalityOptions,
+            onSelected: (selected) {
+              nationalityController.text = selected.text;
+              widget.formKey.currentState?.validateFormButton();
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// Build continue button with enhanced styling
+  Widget _buildContinueButton(BuildContext context) {
+    return PrimaryButton(
+      key: const Key(AppFormFieldKey.primaryButtonValidateKey),
+      onTap: () async {
+        FocusScope.of(context).unfocus();
+
+        if (dobController.text.isNotEmpty) {
+          if (!_isUserAtLeast18(dobController.text)) {
+            _showAgeRestrictionDialog(context);
+            return;
+          }
+        }
+
+        final isPassport = documentTypeController.text == 'PASSPORT';
+        if (!isPassport && (_frontImageBase64 == null || _backImageBase64 == null)) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Please upload both front and back of your ID'),
+              backgroundColor: AppColor.errorRed,
+            ),
+          );
+          return;
+        }
+        if (isPassport && _frontImageBase64 == null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Please upload the front of your passport'),
+              backgroundColor: AppColor.errorRed,
+            ),
+          );
+          return;
+        }
+
+        await widget.formKey.currentState!.validate(
+            onSuccess: (formData) async {
+          await validateClientId(context, ref, formData);
+        });
+      },
+      title: 'Continue',
+    );
   }
 }
 
@@ -615,6 +693,9 @@ class _ManualDocumentUploadSection extends StatelessWidget {
     required Function(String) onImageSelected,
     bool isBack = false,
   }) async {
+    // Store navigator context before showing bottom sheet
+    final navigatorContext = Navigator.of(context).context;
+
     final source = await showModalBottomSheet<String>(
       context: context,
       backgroundColor: Colors.transparent,
@@ -687,7 +768,10 @@ class _ManualDocumentUploadSection extends StatelessWidget {
     String? imageBase64;
 
     if (source == 'camera') {
-      imageBase64 = await documentCaptureService.captureFromCamera();
+      imageBase64 = await documentCaptureService.captureFromCamera(
+        context: navigatorContext,
+        isBackSide: isBack,
+      );
     } else {
       imageBase64 = await documentCaptureService.pickFromGallery();
     }

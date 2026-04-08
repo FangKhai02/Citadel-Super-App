@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:citadel_super_app/screen/universal/simple_document_capture_screen.dart';
 
 enum DocumentType {
   myKad,
@@ -51,19 +53,22 @@ extension DocumentTypeExtension on DocumentType {
 class DocumentCaptureService {
   final ImagePicker _picker = ImagePicker();
 
-  /// Capture document image from camera
-  Future<String?> captureFromCamera() async {
+  /// Capture document image from camera with simple bounding box guide
+  Future<String?> captureFromCamera({
+    required BuildContext context,
+    bool isBackSide = false,
+  }) async {
     try {
-      final XFile? image = await _picker.pickImage(
-        source: ImageSource.camera,
-        imageQuality: 80,
-        maxWidth: 1600,
-        maxHeight: 900,
+      // Navigate to simple capture screen with bounding box
+      final String? base64Image = await Navigator.of(context).push<String?>(
+        MaterialPageRoute(
+          builder: (context) => SimpleDocumentCaptureScreen(
+            isBackSide: isBackSide,
+          ),
+        ),
       );
 
-      if (image == null) return null;
-
-      return await _processImage(image);
+      return base64Image;
     } catch (e) {
       return null;
     }

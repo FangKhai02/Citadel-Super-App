@@ -109,7 +109,7 @@ class AppDocumentImageFormFieldState
     try {
       String? imageBase64;
       if (source == 'camera') {
-        imageBase64 = await documentCaptureService.captureFromCamera();
+        imageBase64 = await documentCaptureService.captureFromCamera(context: context);
       } else {
         imageBase64 = await documentCaptureService.pickFromGallery();
       }
