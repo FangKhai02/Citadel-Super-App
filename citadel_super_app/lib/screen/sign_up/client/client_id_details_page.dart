@@ -88,7 +88,6 @@ class ClientIdDetailsPageState extends ConsumerState<ClientIdDetailsPage> {
       AppDropDownItem(value: 'MYKAD', text: 'MyKad'),
       AppDropDownItem(value: 'PASSPORT', text: 'Passport'),
       AppDropDownItem(value: 'MYPR', text: 'MyPR'),
-      AppDropDownItem(value: 'MYKID', text: 'MyKid'),
       AppDropDownItem(value: 'IKAD', text: 'iKad'),
       AppDropDownItem(value: 'MYTENTERA', text: 'MyTentera'),
     ];
