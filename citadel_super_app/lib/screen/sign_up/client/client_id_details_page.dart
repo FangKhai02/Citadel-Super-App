@@ -51,6 +51,7 @@ class ClientIdDetailsPageState extends ConsumerState<ClientIdDetailsPage> {
   late final TextEditingController nationalityController;
   late final TextEditingController documentTypeController;
 
+  String _documentType = 'MYKAD';
   String? _frontImageBase64;
   String? _backImageBase64;
 
@@ -195,11 +196,14 @@ class ClientIdDetailsPageState extends ConsumerState<ClientIdDetailsPage> {
                         textController: documentTypeController,
                         options: documentTypeOptions,
                         onSelected: (selected) {
-                          documentTypeController.text = selected.value;
-                          setState(() {
-                            _frontImageBase64 = null;
-                            _backImageBase64 = null;
-                          });
+                          final newValue = selected.value;
+                          if (_documentType != newValue) {
+                            setState(() {
+                              _documentType = newValue;
+                              _frontImageBase64 = null;
+                              _backImageBase64 = null;
+                            });
+                          }
                           widget.formKey.currentState?.validateFormButton();
                         },
                       ),
@@ -208,15 +212,21 @@ class ClientIdDetailsPageState extends ConsumerState<ClientIdDetailsPage> {
                       // Document Number
                       AppTextFormField(
                         formKey: widget.formKey,
-                        label: '${documentTypeController.text} Number',
+                        label: '$_documentType Number',
                         controller: documentNumberController,
                         fieldKey: AppFormFieldKey.documentNumberKey,
-                        keyboardType:
-                            const TextInputType.numberWithOptions(signed: true),
-                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                        maxLength: documentTypeController.text == 'MYKAD' ? 12 : null,
+                        keyboardType: (_documentType == 'PASSPORT' ||
+                                _documentType == 'MYTENTERA')
+                            ? TextInputType.text
+                            : const TextInputType.numberWithOptions(
+                                signed: true),
+                        inputFormatters: (_documentType == 'PASSPORT' ||
+                                _documentType == 'MYTENTERA')
+                            ? []
+                            : [FilteringTextInputFormatter.digitsOnly],
+                        maxLength: _documentType == 'MYKAD' ? 12 : null,
                         validator: (value) {
-                          if (documentTypeController.text == 'MYKAD') {
+                          if (_documentType == 'MYKAD') {
                             if (value == null || value.isEmpty) {
                               return 'Please enter your ID number';
                             }
@@ -277,53 +287,13 @@ class ClientIdDetailsPageState extends ConsumerState<ClientIdDetailsPage> {
 
                       // Document Image Upload
                       _ManualDocumentUploadSection(
-                        documentType: documentTypeController.text,
+                        documentType: _documentType,
                         frontImageBase64: _frontImageBase64,
                         backImageBase64: _backImageBase64,
-                        onFrontImageCaptured: (base64) {
-                          print('[DEBUG] onFrontImageCaptured called');
-                          print('[DEBUG] documentType is: ${documentTypeController.text}');
-                          print('[DEBUG] current _backImageBase64 BEFORE setState: ${_backImageBase64?.substring(0, 30) ?? "null"}...');
-                          setState(() {
-                            print('[DEBUG] INSIDE setState - Setting _frontImageBase64');
-                            _frontImageBase64 = base64;
-                            print('[DEBUG] INSIDE setState - _frontImageBase64 now: ${_frontImageBase64?.substring(0, 30) ?? "null"}...');
-                            print('[DEBUG] INSIDE setState - _backImageBase64 still: ${_backImageBase64?.substring(0, 30) ?? "null"}...');
-                          });
-                          print('[DEBUG] AFTER setState - _frontImageBase64: ${_frontImageBase64?.substring(0, 30) ?? "null"}...');
-                          print('[DEBUG] AFTER setState - _backImageBase64: ${_backImageBase64?.substring(0, 30) ?? "null"}...');
-                          widget.formKey.currentState?.validateFormButton();
-                        },
-                        onBackImageCaptured: (base64) {
-                          print('[DEBUG] onBackImageCaptured called');
-                          print('[DEBUG] documentType is: ${documentTypeController.text}');
-                          print('[DEBUG] current _frontImageBase64 BEFORE setState: ${_frontImageBase64?.substring(0, 30) ?? "null"}...');
-                          print('[DEBUG] === CHECKPOINT 1 ===');
-                          setState(() {
-                            print('[DEBUG] INSIDE setState - Setting _backImageBase64');
-                            _backImageBase64 = base64;
-                            print('[DEBUG] INSIDE setState - _backImageBase64 now: ${_backImageBase64?.substring(0, 30) ?? "null"}...');
-                            print('[DEBUG] INSIDE setState - _frontImageBase64 still: ${_frontImageBase64?.substring(0, 30) ?? "null"}...');
-                          });
-                          print('[DEBUG] === CHECKPOINT 2 ===');
-                          print('[DEBUG] AFTER setState - _frontImageBase64: ${_frontImageBase64?.substring(0, 30) ?? "null"}...');
-                          print('[DEBUG] AFTER setState - _backImageBase64: ${_backImageBase64?.substring(0, 30) ?? "null"}...');
-                          print('[DEBUG] === CHECKPOINT 3 - About to call validateFormButton ===');
-                          widget.formKey.currentState?.validateFormButton();
-                          print('[DEBUG] === CHECKPOINT 4 - After validateFormButton ===');
-                          print('[DEBUG] AFTER validateFormButton - _frontImageBase64: ${_frontImageBase64?.substring(0, 30) ?? "null"}...');
-                          print('[DEBUG] AFTER validateFormButton - _backImageBase64: ${_backImageBase64?.substring(0, 30) ?? "null"}...');
-                        },
-                        onClearFront: () {
-                          setState(() {
-                            _frontImageBase64 = null;
-                          });
-                        },
-                        onClearBack: () {
-                          setState(() {
-                            _backImageBase64 = null;
-                          });
-                        },
+                        onFrontImageCaptured: _onFrontImageCaptured,
+                        onBackImageCaptured: _onBackImageCaptured,
+                        onClearFront: _onClearFront,
+                        onClearBack: _onClearBack,
                       ),
                     ],
                   ),
@@ -386,12 +356,42 @@ class ClientIdDetailsPageState extends ConsumerState<ClientIdDetailsPage> {
     );
   }
 
+  void _onFrontImageCaptured(String base64) {
+    setState(() {
+      _frontImageBase64 = base64;
+    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget.formKey.currentState?.validateFormButton();
+    });
+  }
+
+  void _onBackImageCaptured(String base64) {
+    setState(() {
+      _backImageBase64 = base64;
+    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget.formKey.currentState?.validateFormButton();
+    });
+  }
+
+  void _onClearFront() {
+    setState(() {
+      _frontImageBase64 = null;
+    });
+  }
+
+  void _onClearBack() {
+    setState(() {
+      _backImageBase64 = null;
+    });
+  }
+
   Future<void> validateClientId(
       BuildContext context, WidgetRef ref, formData) async {
     SignUpRepository repo = SignUpRepository();
 
     final req = ParameterHelper().clientIdentifyValidationParam(
-      documentTypeController.text,
+      _documentType,
       formData,
       frontImage: _frontImageBase64,
       backImage: _backImageBase64,
@@ -543,7 +543,7 @@ class ClientIdDetailsPageState extends ConsumerState<ClientIdDetailsPage> {
           }
         }
 
-        final isPassport = documentTypeController.text == 'PASSPORT';
+        final isPassport = _documentType == 'PASSPORT';
         if (!isPassport && (_frontImageBase64 == null || _backImageBase64 == null)) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
