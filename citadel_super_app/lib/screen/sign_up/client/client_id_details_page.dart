@@ -224,14 +224,20 @@ class ClientIdDetailsPageState extends ConsumerState<ClientIdDetailsPage> {
                                 _documentType == 'MYTENTERA')
                             ? []
                             : [FilteringTextInputFormatter.digitsOnly],
-                        maxLength: _documentType == 'MYKAD' ? 12 : null,
+                        maxLength: (_documentType == 'MYKAD' ||
+                                _documentType == 'IKAD' ||
+                                _documentType == 'MYPR')
+                            ? 12
+                            : null,
                         validator: (value) {
-                          if (_documentType == 'MYKAD') {
+                          if (_documentType == 'MYKAD' ||
+                              _documentType == 'IKAD' ||
+                              _documentType == 'MYPR') {
                             if (value == null || value.isEmpty) {
                               return 'Please enter your ID number';
                             }
                             if (value.length < 12) {
-                              return 'Invalid MyKad number';
+                              return 'Invalid ${_documentType == 'MYKAD' ? 'MyKad' : _documentType == 'IKAD' ? 'iKad' : 'MyPR'} number';
                             }
                           }
                           return '';
