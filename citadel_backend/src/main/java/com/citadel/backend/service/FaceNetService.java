@@ -89,6 +89,7 @@ public class FaceNetService {
             errorResp.setScore(-1.0);
             errorResp.setDegraded(true);
             errorResp.setMessage("Face verification service unavailable. Please try again later.");
+            errorResp.setCode("500");
             return errorResp;
         }
     }

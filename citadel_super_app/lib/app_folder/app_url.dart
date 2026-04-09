@@ -24,6 +24,9 @@ class AppUrl {
 
   static String get getEnvironmentUrl {
     switch (environment) {
+      case AppConstant.kLocal:
+        // Physical device: use your machine's LAN IP
+        return 'http://88.88.1.18:8080/citadelBackend';
       case AppConstant.kUAT:
         return 'https://api.citadel.nexstream.com.my/citadelBackend';
       case AppConstant.kDev:

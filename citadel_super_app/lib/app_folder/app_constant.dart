@@ -5,6 +5,7 @@ class AppConstant {
   static const String kProd = 'kProd';
   static const String kUAT = 'kUat';
   static const String kDev = 'kDev';
+  static const String kLocal = 'kLocal';
   static const String kApiKey = 'kApiKey';
 }
 

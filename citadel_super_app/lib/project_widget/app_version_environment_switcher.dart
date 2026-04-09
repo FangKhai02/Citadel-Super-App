@@ -101,6 +101,19 @@ class AppVersionEnvironmentSwitcher extends HookWidget {
                                         resetData();
                                       }
                                     }),
+                                gapHeight8,
+                                PrimaryButton(
+                                    height: 48.h,
+                                    title: 'Local (88.88.1.18)',
+                                    onTap: () async {
+                                      final result =
+                                          await showPasswordDialog(context);
+                                      if (result) {
+                                        await AppUrl.setEnvironment(
+                                            AppConstant.kLocal);
+                                        resetData();
+                                      }
+                                    }),
                               ],
                             ),
                           ),

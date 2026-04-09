@@ -1,5 +1,6 @@
 package com.citadel.backend.vo.FaceID;
 
+import com.citadel.backend.vo.BaseResp;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +10,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class FaceCompareRespVo {
+public class FaceCompareRespVo extends BaseResp {
     private Boolean verified;     // true if face match passed (score <= 0.45)
     private Double score;         // Euclidean distance (lower = more similar)
     private String message;       // Human-readable message
