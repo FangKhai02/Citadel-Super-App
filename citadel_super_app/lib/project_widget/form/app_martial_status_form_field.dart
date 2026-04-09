@@ -37,6 +37,7 @@ class AppMartialStatusFormField extends HookConsumerWidget {
           hintText: 'Marital Status',
           enabled: enabled,
           initialValue: items.isEmpty ? '' : items.first.value ?? '',
+          enableSearch: false,
           options: martialStatusConstants.list!
               .map((e) => AppDropDownItem(value: e.key!, text: e.value!))
               .toList(),

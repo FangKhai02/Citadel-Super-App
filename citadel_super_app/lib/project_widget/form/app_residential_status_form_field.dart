@@ -39,6 +39,7 @@ class AppResidentialStatusFormField extends StatelessWidget {
             enabled: enabled,
             initialValue: initialValue ?? '',
             textController: textController,
+            enableSearch: false,
             // initialSelectedItem: items.isEmpty
             //     ? null
             //     : AppDropDownItem(

@@ -77,7 +77,7 @@ class PersonalDetailsPageState extends ConsumerState<PersonalDetailsPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Progress Bar
-                const SignUpProgressBar(currentStep: 4),
+                const SignUpProgressBar(currentStep: 3),
                 gapHeight4,
 
                 // Header Section
@@ -193,7 +193,7 @@ class PersonalDetailsPageState extends ConsumerState<PersonalDetailsPage> {
                   AppTextFormField(
                     formKey: widget.formKey,
                     isRequired: false,
-                    label: 'Agent Referral Code',
+                    label: 'Agent Referral Code (optional)',
                     fieldKey: AppFormFieldKey.agentReferralCodeKey,
                     hint: 'Optional',
                   ),

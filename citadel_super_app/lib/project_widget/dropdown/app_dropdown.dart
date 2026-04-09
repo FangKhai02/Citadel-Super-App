@@ -31,6 +31,7 @@ class AppDropdown extends BaseFormField {
     super.initialValue,
     this.textFieldDecoration,
     this.padding,
+    this.enableSearch = true,
   });
 
   final GlobalKey<AppFormState>? formKey;
@@ -44,6 +45,7 @@ class AppDropdown extends BaseFormField {
   final TextEditingController? textController;
   final InputDecoration? textFieldDecoration;
   final EdgeInsets? padding;
+  final bool enableSearch;
 
   @override
   BaseFormFieldState createState() => AppDropdownState();
@@ -51,6 +53,7 @@ class AppDropdown extends BaseFormField {
 
 class AppDropdownState extends BaseFormFieldState<AppDropdown> {
   late final TextEditingController textEditingController;
+  late final TextEditingController searchController;
   final MenuController menuController = MenuController();
   AppDropDownItem? selectedItem;
 
@@ -68,6 +71,8 @@ class AppDropdownState extends BaseFormFieldState<AppDropdown> {
 
     textEditingController = widget.textController ??
         TextEditingController(text: widget.initialValue);
+
+    searchController = TextEditingController();
 
     selectedItem = widget.options.firstWhereOrNull((e) =>
         e.text.toLowerCase() == textEditingController.text.toLowerCase() ||
@@ -99,6 +104,17 @@ class AppDropdownState extends BaseFormFieldState<AppDropdown> {
       return widget.options;
     }, [widget.options]);
 
+    final filteredOptions = useMemoized(() {
+      if (searchController.text.isEmpty) {
+        return filterHistoryList;
+      }
+      return filterHistoryList
+          .where((option) => option.text
+              .toLowerCase()
+              .contains(searchController.text.toLowerCase()))
+          .toList();
+    }, [filterHistoryList, searchController.text]);
+
     return MenuAnchor(
       controller: menuController,
       style: MenuStyle(
@@ -107,17 +123,55 @@ class AppDropdownState extends BaseFormFieldState<AppDropdown> {
         maximumSize: WidgetStatePropertyAll(Size.fromHeight(0.5.sh)),
       ),
       menuChildren: [
-        ...filterHistoryList.map(
+        if (widget.enableSearch)
+          Padding(
+            padding: EdgeInsets.all(8.w),
+            child: SizedBox(
+              width: 0.9.sw,
+              child: TextField(
+                controller: searchController,
+                decoration: InputDecoration(
+                  hintText: 'Search',
+                  hintStyle: TextStyle(
+                    color: AppColor.labelBlack,
+                    fontSize: 14.spMin,
+                  ),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.r),
+                    borderSide: const BorderSide(color: AppColor.labelGray),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.r),
+                    borderSide: const BorderSide(color: AppColor.labelGray),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.r),
+                    borderSide:
+                        const BorderSide(color: AppColor.brightBlue, width: 2),
+                  ),
+                ),
+                onChanged: (_) {
+                  setState(() {});
+                },
+              ),
+            ),
+          ),
+        // Filtered options
+        ...filteredOptions.map(
           (e) => GestureDetector(
             behavior: HitTestBehavior.translucent,
             onTap: () {
               setState(() {
                 selectedItem = e;
+                searchController.clear();
               });
 
               textEditingController.text = e.text;
               widget.formKey?.currentState?.validateFormButton();
               widget.onSelected?.call(e);
+              menuController.close();
             },
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 8.w),
@@ -128,7 +182,7 @@ class AppDropdownState extends BaseFormFieldState<AppDropdown> {
                     EdgeInsets.symmetric(horizontal: 8.w, vertical: 14.5.h),
                 decoration: selectedItem?.value == e.value
                     ? BoxDecoration(
-                        color: AppColor.brightBlue.withOpacity(0.2),
+                        color: AppColor.brightBlue.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(16.r),
                       )
                     : null,
@@ -186,6 +240,12 @@ class AppDropdownState extends BaseFormFieldState<AppDropdown> {
             suffix: Assets.images.icons.dropdown.image(scale: 3),
           )),
     );
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
   }
 
   @override

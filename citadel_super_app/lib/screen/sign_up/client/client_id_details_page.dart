@@ -510,6 +510,7 @@ class ClientIdDetailsPageState extends ConsumerState<ClientIdDetailsPage> {
             hintText: 'Select',
             textController: genderController,
             options: genderOptions,
+            enableSearch: false,
             onSelected: (selected) {
               genderController.text = selected.text;
               widget.formKey.currentState?.validateFormButton();
