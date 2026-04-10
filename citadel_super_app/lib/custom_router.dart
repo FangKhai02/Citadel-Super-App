@@ -100,6 +100,7 @@ import 'package:citadel_super_app/screen/sign_up/client/employment_details_page.
 import 'package:citadel_super_app/screen/sign_up/client/pep_declaration_page.dart';
 import 'package:citadel_super_app/screen/sign_up/register_success_page.dart';
 import 'package:citadel_super_app/screen/sign_up/selfie_page.dart';
+import 'package:citadel_super_app/screen/sign_up/face_verification_loading_page.dart';
 import 'package:citadel_super_app/screen/sign_up/set_password_page.dart';
 import 'package:citadel_super_app/screen/sign_up/agent/agent_id_details_page.dart';
 import 'package:citadel_super_app/screen/sign_up/document_page.dart';
@@ -135,6 +136,7 @@ class CustomRouter {
   static const String clientIdDetails = '/signup/clientIdDetails';
   static const String personalDetails = '/signup/personalDetails';
   static const String selfie = '/signup/selfie';
+  static const String faceVerificationLoading = '/signup/faceVerificationLoading';
   static const String agencyDetails = '/signup/agencyDetails';
   static const String bankDetails = '/signup/bankDetails';
   static const String eSignAgreement = '/signup/eSignAgreement';
@@ -357,6 +359,10 @@ class CustomRouter {
       case selfie:
         return MaterialPageRoute(
             settings: settings, builder: (_) => const SelfiePage());
+      case faceVerificationLoading:
+        final args = settings.arguments as FaceVerificationLoadingPage;
+        return MaterialPageRoute(
+            settings: settings, builder: (_) => args);
       case agencyDetails:
         return MaterialPageRoute(
             settings: settings, builder: (_) => AgencyDetailsPage());

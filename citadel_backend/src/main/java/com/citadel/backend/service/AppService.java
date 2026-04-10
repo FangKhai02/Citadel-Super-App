@@ -304,19 +304,25 @@ public class AppService extends BaseService {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         Date now = new Date();
 
-        // Upload both images to S3
         try {
-            String selfieS3FilePath = AwsS3Util.convertAndUploadBase64File(new UploadBase64FileBuilder()
-                    .base64String(req.getSelfieImage())
-                    .fileName("selfie_" + req.getDocumentNumber() + "_" + now.getTime())
-                    .filePath(S3_FACE_ID_IMAGE_VALIDATE_SELFIE_PATH + sdf.format(now)));
-            String idDocumentS3FilePath = AwsS3Util.convertAndUploadBase64File(new UploadBase64FileBuilder()
-                    .base64String(req.getDocumentImage())
-                    .fileName("id-document_" + req.getDocumentNumber() + "_" + now.getTime())
-                    .filePath(S3_FACE_ID_IMAGE_VALIDATE_ID_DOCUMENT_PATH + sdf.format(now)));
-
-            // Call FaceNet sidecar for face comparison
+            // Call FaceNet sidecar for face comparison first
             FaceCompareRespVo faceNetResult = faceNetService.compareFaces(req);
+
+            // Upload images to S3 — non-fatal: log and continue if S3 is unavailable locally
+            String selfieS3FilePath = null;
+            String idDocumentS3FilePath = null;
+            try {
+                selfieS3FilePath = AwsS3Util.convertAndUploadBase64File(new UploadBase64FileBuilder()
+                        .base64String(req.getSelfieImage())
+                        .fileName("selfie_" + req.getDocumentNumber() + "_" + now.getTime())
+                        .filePath(S3_FACE_ID_IMAGE_VALIDATE_SELFIE_PATH + sdf.format(now)));
+                idDocumentS3FilePath = AwsS3Util.convertAndUploadBase64File(new UploadBase64FileBuilder()
+                        .base64String(req.getDocumentImage())
+                        .fileName("id-document_" + req.getDocumentNumber() + "_" + now.getTime())
+                        .filePath(S3_FACE_ID_IMAGE_VALIDATE_ID_DOCUMENT_PATH + sdf.format(now)));
+            } catch (Exception s3Ex) {
+                log.warn("[FaceCompare] S3 upload failed (non-fatal): {}", s3Ex.getMessage());
+            }
 
             // Save to database
             FaceIdImageValidate result = new FaceIdImageValidate();
@@ -325,10 +331,8 @@ public class AppService extends BaseService {
             result.setSelfieFilename(selfieS3FilePath);
             result.setIdDocumentFilename(idDocumentS3FilePath);
             result.setConfidence(faceNetResult.getScore());
-            result.setLivenessScore(faceNetResult.getScore()); // Using same score as both liveness and confidence
+            result.setLivenessScore(faceNetResult.getScore());
             result.setValid(faceNetResult.getVerified());
-
-            // Set new fields
             result.setDocumentType(req.getDocumentType());
             result.setFullName(req.getFullName());
             result.setNationality(req.getNationality());
@@ -336,7 +340,6 @@ public class AppService extends BaseService {
             result.setFaceMatchScore(faceNetResult.getScore());
             result.setFaceVerified(faceNetResult.getVerified());
 
-            // Parse and set date of birth
             try {
                 SimpleDateFormat dobFormat = new SimpleDateFormat("yyyy-MM-dd");
                 result.setDateOfBirth(dobFormat.parse(req.getDateOfBirth()));

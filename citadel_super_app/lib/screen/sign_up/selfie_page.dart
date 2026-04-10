@@ -3,19 +3,17 @@ import 'package:citadel_super_app/app_folder/app_spacing.dart';
 import 'package:citadel_super_app/app_folder/app_text_style.dart';
 import 'package:citadel_super_app/custom_router.dart';
 import 'package:citadel_super_app/data/model/sign_up.dart';
-import 'package:citadel_super_app/data/repository/app_repository.dart';
-import 'package:citadel_super_app/data/request/face_compare_request_vo.dart';
 import 'package:citadel_super_app/data/state/agent_signup_state.dart';
 import 'package:citadel_super_app/data/state/client_signup_state.dart';
 import 'package:citadel_super_app/data/state/microblink_result_state.dart';
 import 'package:citadel_super_app/data/state/sign_up_state.dart';
-import 'package:citadel_super_app/extension/web_service_extension.dart';
 import 'package:citadel_super_app/generated/assets.gen.dart';
 import 'package:citadel_super_app/project_widget/appbar/citadel_app_bar.dart';
 import 'package:citadel_super_app/project_widget/background/citadel_background.dart';
 import 'package:citadel_super_app/project_widget/button/primary_button.dart';
 import 'package:citadel_super_app/project_widget/dialog/app_dialog.dart';
 import 'package:citadel_super_app/project_widget/progress/signup_progress_bar.dart';
+import 'package:citadel_super_app/screen/sign_up/face_verification_loading_page.dart';
 import 'package:citadel_super_app/service/document_capture_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -163,81 +161,21 @@ class SelfiePage extends HookConsumerWidget {
                 return;
               }
 
-              // Build face compare request
-              final faceCompareRequest = FaceCompareRequestVo(
-                documentImage: documentImage,
-                selfieImage: selfieImageBase64,
-                documentType: documentType?.value ??
-                    (documentNumber?.length == 12 ? 'MYKAD' : 'PASSPORT'),
-                fullName: fullName ?? '',
-                documentNumber: documentNumber ?? '',
-                dateOfBirth: dateOfBirth != null
-                    ? '${dateOfBirth.year}-${dateOfBirth.month.toString().padLeft(2, '0')}-${dateOfBirth.day.toString().padLeft(2, '0')}'
-                    : null,
-                gender: gender?.toUpperCase() ?? 'MALE',
-                nationality: nationality ?? 'Malaysian',
-              );
-
-              // Call face compare API
-              final appRepository = AppRepository();
-              await appRepository
-                  .faceCompare(faceCompareRequest)
-                  .baseThen(
+              // Navigate to face verification loading page
+              Navigator.pushNamed(
                 context,
-                onResponseSuccess: (response) async {
-                  if (response.verified ?? false) {
-                    // Update state with selfie
-                    ref
-                        .read(kycDocumentNotifierProvider.notifier)
-                        .setSelfieImage(selfieImage);
-
-                    if (signUpType == SignUpAs.client) {
-                      ref
-                          .read(clientSignUpProvider.notifier)
-                          .setSelfieImage(selfieImage);
-                      Navigator.pushNamed(
-                          context, CustomRouter.pepDeclaration);
-                    } else {
-                      ref
-                          .read(agentSignUpProvider.notifier)
-                          .setSelfieImage(selfieImage);
-                      Navigator.pushNamed(
-                          context, CustomRouter.agencyDetails);
-                    }
-                  } else {
-                    showDialog(
-                      context: context,
-                      builder: (ctx) {
-                        return AppDialog(
-                          title: 'Face Verification Failed',
-                          message: response.message ??
-                              'Your face does not match the document ID. Please try again.',
-                          isRounded: true,
-                          positiveOnTap: () {
-                            Navigator.pop(context);
-                          },
-                          showNegativeButton: false,
-                        );
-                      },
-                    );
-                  }
-                },
-                onResponseError: (e, s) {
-                  showDialog(
-                    context: context,
-                    builder: (ctx) {
-                      return AppDialog(
-                        title: 'Face Verification Failed',
-                        message: e.message,
-                        isRounded: true,
-                        positiveOnTap: () {
-                          Navigator.pop(context);
-                        },
-                        showNegativeButton: false,
-                      );
-                    },
-                  );
-                },
+                CustomRouter.faceVerificationLoading,
+                arguments: FaceVerificationLoadingPage(
+                  selfieImage: selfieImage,
+                  documentImage: documentImage,
+                  documentNumber: documentNumber,
+                  fullName: fullName,
+                  dateOfBirth: dateOfBirth,
+                  gender: gender,
+                  nationality: nationality,
+                  documentType: documentType,
+                  signUpType: signUpType,
+                ),
               );
             },
             title: 'Start Verification',
